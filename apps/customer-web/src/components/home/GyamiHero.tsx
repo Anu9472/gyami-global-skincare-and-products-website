@@ -1,6 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { CSSProperties, PointerEvent } from 'react';
 
+const FILM_START_TIME = 0.9;
+const FILM_DISPLAY_TIME = 5000;
+
 type HeroFilm = {
   name: string;
   tabName: string;
@@ -79,7 +82,7 @@ export function GyamiHero() {
       video.preload = 'auto';
       video.load();
     };
-    const nextFilm = window.setTimeout(() => warmVideo((active + 1) % films.length), 8500);
+    const nextFilm = window.setTimeout(() => warmVideo((active + 1) % films.length), 2600);
     return () => {
       window.clearTimeout(nextFilm);
     };
@@ -89,7 +92,10 @@ export function GyamiHero() {
     const video = videos.current[active];
     if (!video || !mediaStarted) return undefined;
     if (paused) video.pause();
-    else void video.play().catch(() => setPaused(true));
+    else {
+      if (video.currentTime < FILM_START_TIME || video.currentTime > FILM_START_TIME + 5.4) video.currentTime = FILM_START_TIME;
+      void video.play().catch(() => setPaused(true));
+    }
   }, [active, mediaStarted, paused]);
 
   const transitionTo = useCallback((index: number) => {
@@ -110,7 +116,7 @@ export function GyamiHero() {
     }
     next.preload = 'auto';
     if (next.readyState < HTMLMediaElement.HAVE_CURRENT_DATA) next.load();
-    next.currentTime = 0;
+    next.currentTime = FILM_START_TIME;
     const reveal = () => {
       setActive(index);
       window.setTimeout(() => {
@@ -127,7 +133,7 @@ export function GyamiHero() {
 
   useEffect(() => {
     if (paused || !mediaStarted) return undefined;
-    const slider = window.setTimeout(() => transitionTo((active + 1) % films.length), 13000);
+    const slider = window.setTimeout(() => transitionTo((active + 1) % films.length), FILM_DISPLAY_TIME);
     return () => window.clearTimeout(slider);
   }, [active, mediaStarted, paused, transitionTo]);
 
@@ -142,8 +148,8 @@ export function GyamiHero() {
             className={index === active ? 'is-active' : ''}
             style={{ '--film-rotation': `${index % 2 === 0 ? -0.7 : 0.7}deg` } as CSSProperties}
             key={film.src}
-            loop
             muted
+            onLoadedMetadata={(event) => { event.currentTarget.currentTime = FILM_START_TIME; }}
             playsInline
             poster={film.poster}
             preload="none"
@@ -163,6 +169,7 @@ export function GyamiHero() {
         <div className="gyami-hero-film__aurora" />
         <div className="gyami-hero-film__grain" />
       </div>
+      <div className="gyami-hero-product-name" aria-live="polite"><span>Featured ritual</span><strong>{activeFilm.name}</strong></div>
 
       <div className="gyami-hero-orbit" aria-hidden="true"><i /><i /><i /></div>
       <div className="gyami-hero-aurora-ribbons" aria-hidden="true"><i /><i /><i /></div>
