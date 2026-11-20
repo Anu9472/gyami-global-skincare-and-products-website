@@ -1016,17 +1016,13 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.12; }
 .gyami-intro-mark { justify-self: end; width: 150px; height: 150px; padding: 8px; border: 1px solid #e0c786; border-radius: 50%; }
 .gyami-intro-mark img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
 
-.gyami-collection { position: relative; isolation: isolate; overflow: hidden; padding-block: clamp(78px, 8vw, 118px); background: radial-gradient(circle at 14% 8%, rgba(193,119,207,.2), transparent 28%), radial-gradient(circle at 88% 32%, rgba(220,171,78,.18), transparent 31%), linear-gradient(145deg, #160019 0%, #2a0431 46%, #18001e 100%); }
-.gyami-collection::before { content: ""; position: absolute; z-index: -2; inset: -22%; pointer-events: none; background: conic-gradient(from 110deg at 52% 48%, transparent, rgba(171,91,185,.12), transparent 28%, rgba(226,181,87,.11), transparent 58%); filter: blur(36px); animation: gyami-collection-aurora 18s linear infinite; }
-.gyami-collection::after { content: ""; position: absolute; z-index: -1; inset: 0; pointer-events: none; opacity: .42; background-image: radial-gradient(circle, rgba(255,230,169,.62) 0 1px, transparent 1.6px); background-size: 76px 76px; mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent); }
-@keyframes gyami-collection-aurora { to { transform: rotate(1turn) scale(1.08); } }
+.gyami-collection { position: relative; overflow: hidden; padding-block: clamp(78px, 8vw, 118px); background: radial-gradient(circle at 82% 5%, rgba(127,50,133,.1), transparent 32%), #f5eee7; }
 .gyami-section-heading { display: grid; grid-template-columns: 1.2fr .7fr; align-items: end; gap: 60px; margin-bottom: 50px; }
-.gyami-collection .gyami-kicker { color: #e0b95e; }
-.gyami-section-heading h2 { margin: 0; color: #fff8ed; font-size: clamp(2.7rem, 4.2vw, 4.4rem); text-shadow: 0 18px 55px rgba(0,0,0,.3); }
-.gyami-section-heading > p { color: #d8c8da; line-height: 1.8; }
+.gyami-section-heading h2 { margin: 0; color: #34053e; font-size: clamp(2.7rem, 4.2vw, 4.4rem); }
+.gyami-section-heading > p { color: #746975; line-height: 1.8; }
 .gyami-product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; perspective: 1400px; }
-.gyami-product-card { position: relative; overflow: hidden; border: 1px solid rgba(239,204,124,.22); border-radius: 28px; background: linear-gradient(155deg, rgba(255,255,255,.12), rgba(255,255,255,.055)); box-shadow: 0 22px 60px rgba(3,0,5,.34), inset 0 1px rgba(255,255,255,.2); transform: translateY(0) rotateX(0) rotateY(0); transform-style: preserve-3d; transition: transform .75s cubic-bezier(.22,1,.36,1), box-shadow .75s cubic-bezier(.22,1,.36,1), border-color .45s ease; backdrop-filter: blur(18px); }
-.gyami-product-card:hover { z-index: 2; border-color: rgba(239,204,124,.58); transform: translateY(-14px) rotateX(1.4deg) rotateY(-1.2deg); box-shadow: 0 45px 95px rgba(3,0,5,.55), 0 0 50px rgba(203,147,57,.14), inset 0 1px rgba(255,255,255,.28); }
+.gyami-product-card { position: relative; overflow: hidden; border: 1px solid rgba(116,61,123,.16); border-radius: 26px; background: #fffdf9; box-shadow: 0 14px 38px rgba(63,20,69,.08), inset 0 1px rgba(255,255,255,.75); transform: translateY(0); transition: transform .65s cubic-bezier(.22,1,.36,1), box-shadow .65s cubic-bezier(.22,1,.36,1), border-color .45s ease; }
+.gyami-product-card:hover { z-index: 2; border-color: rgba(199,151,57,.42); transform: translateY(-12px); box-shadow: 0 38px 80px rgba(55,8,64,.22), 0 0 0 1px rgba(232,190,101,.16); }
 .gyami-product-card__link { display: block; color: inherit; }
 .gyami-product-image { position: relative; width: calc(100% - 16px); height: auto; aspect-ratio: 16 / 9; margin: 8px 8px 0; overflow: hidden; border: 1px solid rgba(246,215,142,.2); border-radius: 22px; background: radial-gradient(circle at 50% 35%, #713c77, #1d0322 72%); box-shadow: 0 18px 38px rgba(3,0,5,.34), inset 0 0 55px rgba(225,181,88,.08); transform: translateZ(22px); }
 .gyami-product-image::before { content: ""; position: absolute; z-index: 2; top: -55%; left: -35%; width: 26%; height: 210%; pointer-events: none; background: linear-gradient(90deg, transparent, rgba(255,244,215,.26), transparent); filter: blur(5px); transform: rotate(20deg) translateX(-260%); transition: transform 1.1s cubic-bezier(.22,1,.36,1); }
@@ -1045,16 +1041,15 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.12; }
 .gyami-product-image--center img { width: 300%; max-width: none; margin-left: -100%; object-position: center; }
 .gyami-product-image--right img { width: 300%; max-width: none; margin-left: -200%; object-position: right center; }
 .gyami-product-image--detergent { background: radial-gradient(circle at 50% 28%, rgba(216,171,85,.38), transparent 33%), linear-gradient(145deg, #3c0b47, #18001d 72%); }
-.gyami-product-image--detergent img { object-fit: contain; object-position: center; padding: 10px 22px 0; filter: drop-shadow(0 20px 18px rgba(0,0,0,.36)) saturate(1.05) contrast(1.03); }
-.gyami-product-image--combo img { object-fit: contain; padding: 8px; filter: drop-shadow(0 18px 17px rgba(0,0,0,.3)) saturate(1.04); }
-.gyami-product-info { min-height: 154px; display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 18px; padding: 24px; transform: translateZ(10px); }
-.gyami-product-info p { margin-bottom: 5px; color: #d8ad56; font-size: .61rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
-.gyami-product-info h3 { margin: 0; color: #fff8ed; font: 600 1.2rem/1.2 'Playfair Display', serif; }
+.gyami-product-image--detergent img, .gyami-product-image--combo img { object-fit: cover; object-position: center; padding: 0; filter: saturate(1.04) contrast(1.025); }
+.gyami-product-info { min-height: 154px; display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 18px; padding: 24px; }
+.gyami-product-info p { margin-bottom: 5px; color: #9a7a43; font-size: .61rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.gyami-product-info h3 { margin: 0; color: #3d1644; font: 600 1.2rem/1.2 'Playfair Display', serif; }
 .gyami-product-price { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
-.gyami-product-price strong { color: #fff8ed; font-size: 1.08rem; }
-.gyami-product-price del { color: #ad9faf; font-size: .76rem; }
+.gyami-product-price strong { color: #3d1644; font-size: 1.08rem; }
+.gyami-product-price del { color: #938995; font-size: .76rem; }
 .gyami-product-price span { padding: 4px 7px; border-radius: 999px; color: #684b14; background: #f5e5b5; font-size: .58rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
-.gyami-card-cta { align-self: end; padding-bottom: 3px; border-bottom: 1px solid #d7aa52; color: #f0cf82; font-size: .62rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.gyami-card-cta { align-self: end; padding-bottom: 3px; border-bottom: 1px solid #ba9147; color: #5c2465; font-size: .62rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
 .gyami-collection-action { display: flex; justify-content: center; margin-top: 45px; }
 
 .gyami-philosophy { padding-block: clamp(78px, 8vw, 112px); background: #fffdf9; }
@@ -1209,6 +1204,6 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.12; }
   .gyami-hero-film video { transition: none; transform: none; }
   .gyami-hero-enter { opacity: 1; animation: none; }
   .gyami-hero-orbit, .gyami-hero-film__aurora, .gyami-hero-dust i { animation: none; }
-  .gyami-brand-ribbon > div, .gyami-story::before, .gyami-collection::before { animation: none; }
+  .gyami-brand-ribbon > div, .gyami-story::before { animation: none; }
   .home-reveal .gyami-section-heading > *, .home-reveal .gyami-intro-grid > *, .home-reveal .gyami-philosophy-grid > *, .home-reveal .gyami-story-grid > *, .home-reveal--cards .gyami-product-card { opacity: 1; transform: none; }
 }

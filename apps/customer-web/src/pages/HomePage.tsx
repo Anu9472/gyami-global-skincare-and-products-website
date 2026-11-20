@@ -1,8 +1,8 @@
 import { ArrowRight, Check, Droplets, FlaskConical, Gem, ShieldCheck, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import brandBanner from '../assets/gyami/brand-banner.jpeg';
-import detergentImage from '../assets/gyami/detergent-liquid-premium.png';
-import facewashImage from '../assets/gyami/facewash-collection-clean.webp';
+import detergentImage from '../assets/gyami/detergent-premium-v2.jpg';
+import facewashImage from '../assets/gyami/facewash-trio-premium-v2.jpg';
 import logoImage from '../assets/gyami/gyami-logo.jpeg';
 import { GyamiHero } from '../components/home/GyamiHero';
 import { ScrollReveal } from '../components/home/ScrollReveal';
