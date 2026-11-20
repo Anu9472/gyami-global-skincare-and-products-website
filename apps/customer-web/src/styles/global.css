@@ -225,9 +225,9 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.12; }
 .product-grid--compact { grid-template-columns: repeat(4, 1fr); }
 .product-card { position: relative; overflow: hidden; background: white; border: 1px solid var(--line); border-radius: 18px; transition: transform .2s ease, box-shadow .2s ease; }
 .product-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
-.product-card-image { position: relative; display: block; overflow: hidden; background: #f3f0e7; }
-.product-card-image img { width: 100%; height: 250px; object-fit: cover; transition: transform .35s ease; }
-.product-image-empty { width: 100%; height: 250px; display: grid; place-items: center; padding: 20px; color: var(--muted); background: linear-gradient(145deg, #f3f0e7, #faf8f2); font-size: .78rem; }
+.product-card-image { position: relative; width: 100%; aspect-ratio: 16 / 9; display: block; overflow: hidden; background: #f3f0e7; }
+.product-card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform .35s ease; }
+.product-image-empty { width: 100%; height: 100%; display: grid; place-items: center; padding: 20px; color: var(--muted); background: linear-gradient(145deg, #f3f0e7, #faf8f2); font-size: .78rem; }
 .product-card:hover .product-card-image img { transform: scale(1.025); }
 .discount-badge, .stock-overlay { position: absolute; left: 12px; top: 12px; padding: 5px 8px; border-radius: 7px; background: white; color: var(--green-900); font-size: .7rem; font-weight: 800; }
 .product-verification-badge { position: absolute; z-index: 2; left: 12px; bottom: 12px; width: fit-content; display: inline-flex; align-items: center; gap: 7px; padding: 7px 10px; border: 1px solid rgba(255,255,255,.76); border-radius: 11px; color: white; background: linear-gradient(135deg, rgba(20,108,61,.95), rgba(9,67,38,.95)); box-shadow: 0 8px 22px rgba(7,54,30,.24); backdrop-filter: blur(8px); }
@@ -818,7 +818,7 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.12; }
   .story-grid { gap: 30px; }
   .story-grid img { height: 290px; }
   .promo-grid { grid-template-columns: 1fr; gap: 28px; }
-  .product-card-image img { height: 270px; }
+  .product-card-image img { height: 100%; }
   .catalogue-controls { width: 100%; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px; }
   .catalogue-controls > *, .catalogue-controls select { min-width: 0; width: 100%; }
   .catalogue-controls .filter-toggle { justify-content: center; }
@@ -1116,13 +1116,24 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.12; }
 .gallery-main--haldi-chandan-papaya-facewash > img { object-position: 91% 62%; }
 .product-card-image--detergent-liquid img,
 .gallery-main--detergent-liquid > img { object-position: center; }
+.product-card-image--gold-kesar-facewash { background: radial-gradient(circle at 50% 38%, rgba(223,181,92,.3), transparent 32%), linear-gradient(145deg, #3b0b45, #17001c 75%); }
+.product-card-image--gold-kesar-facewash img { object-fit: contain; object-position: center; padding: 12px 18px 0; filter: drop-shadow(0 15px 16px rgba(22,0,26,.28)); }
+.product-card-image--facewash-trio-combo,
+.product-card-image--detergent-liquid { background: linear-gradient(145deg, #3d1544, #1b031f); }
+.product-card-image--facewash-trio-combo img,
+.product-card-image--detergent-liquid img { object-fit: cover; object-position: center; }
 .product-card:hover .product-card-image--vitamin-c-facewash img,
 .product-card:hover .product-card-image--charcoal-facewash img,
 .product-card:hover .product-card-image--haldi-chandan-papaya-facewash img { transform: scale(1.025); }
 .product-card-image--haldi-chandan-facewash img,
 .gallery-main--haldi-chandan-facewash > img { object-position: 68% center; }
-.product-card-image--facewash-trio-combo img,
 .gallery-main--facewash-trio-combo > img { object-position: center 56%; }
+
+@media (max-width: 640px) {
+  .product-card-image--gold-kesar-facewash img { padding: 10px 14px 0; }
+  .product-card-image--facewash-trio-combo img,
+  .product-card-image--detergent-liquid img { object-position: center; }
+}
 
 @media (max-width: 980px) {
   .gyami-hero-film { left: 40%; }

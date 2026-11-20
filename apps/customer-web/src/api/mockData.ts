@@ -1,5 +1,5 @@
-import detergentImage from '../assets/gyami/detergent-liquid-premium.png';
-import facewashImage from '../assets/gyami/facewash-collection-clean.webp';
+import detergentImage from '../assets/gyami/detergent-premium-v2.jpg';
+import facewashImage from '../assets/gyami/facewash-trio-premium-v2.jpg';
 import goldKesarImage from '../assets/gyami/gold-kesar-facewash.png';
 import type { Category, Product, VendorSummary } from './types';
 
