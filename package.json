@@ -1,0 +1,36 @@
+{
+  "name": "gyami-global-platform",
+  "private": true,
+  "version": "0.1.0",
+  "engines": {
+    "node": "^22.12.0 || ^24.0.0",
+    "npm": ">=10"
+  },
+  "workspaces": [
+    "apps/customer-web",
+    "apps/vendor-panel",
+    "apps/admin-panel",
+    "apps/api"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace @gyami-global/customer-web",
+    "dev:api": "npm run start:dev --workspace @gyami-global/api",
+    "db:setup:mac": "bash scripts/setup-local-macos.sh",
+    "dev:api:mac": "bash scripts/start-local-api.sh",
+    "dev:local": "bash scripts/start-local-stack.sh",
+    "db:start": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/start-local-db.ps1",
+    "dev:vendor": "npm run dev --workspace @gyami-global/vendor-panel",
+    "dev:admin": "npm run dev --workspace @gyami-global/admin-panel",
+    "build": "npm run build --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "test:responsive": "node scripts/responsive-audit.mjs",
+    "test:deployment-config": "node scripts/validate-deployment-config.mjs",
+    "test:smoke:local": "node scripts/smoke-api-workflow.mjs --execute",
+    "verify:production-readiness": "node scripts/verify-production-readiness.mjs"
+  },
+  "devDependencies": {
+    "source-map-js": "^1.2.2"
+  }
+}

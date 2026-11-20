@@ -1,0 +1,75 @@
+services:
+  - type: web
+    name: gyami-global-api
+    runtime: node
+    plan: free
+    region: singapore
+    autoDeployTrigger: commit
+    buildCommand: npm ci --include=dev && npm run prisma:generate --workspace @gyami-global/api && npm run build --workspace @gyami-global/api
+    startCommand: npm run prisma:migrate --workspace @gyami-global/api && npm run prisma:bootstrap-production --workspace @gyami-global/api && npm run prisma:seed-home-hero --workspace @gyami-global/api && node apps/api/dist/src/main.js
+    healthCheckPath: /api/v1/health/ready
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: gyami-global-postgres
+          property: connectionString
+      - key: JWT_ACCESS_SECRET
+        generateValue: true
+      - key: JWT_REFRESH_SECRET
+        generateValue: true
+      - key: BANK_DATA_ENCRYPTION_KEY
+        generateValue: true
+      - key: CORS_ORIGINS
+        sync: false
+      - key: THROTTLE_REDIS_URL
+        sync: false
+      - key: METRICS_AUTH_TOKEN
+        sync: false
+      - key: TRUST_PROXY_HOPS
+        value: "1"
+      - key: CUSTOMER_WEB_URL
+        sync: false
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: PRIVATE_UPLOAD_DIR
+        value: /opt/render/project/src/apps/api/private-uploads
+      - key: DOCUMENT_STORAGE_PROVIDER
+        value: s3
+      - key: DOCUMENT_STORAGE_S3_BUCKET
+        sync: false
+      - key: DOCUMENT_STORAGE_S3_REGION
+        sync: false
+      - key: DOCUMENT_STORAGE_S3_ENDPOINT
+        sync: false
+      - key: DOCUMENT_STORAGE_S3_FORCE_PATH_STYLE
+        value: "false"
+      - key: DOCUMENT_STORAGE_S3_SERVER_SIDE_ENCRYPTION
+        value: AES256
+      - key: DOCUMENT_STORAGE_S3_KMS_KEY_ID
+        sync: false
+      - key: DOCUMENT_STORAGE_S3_ACCESS_KEY_ID
+        sync: false
+      - key: DOCUMENT_STORAGE_S3_SECRET_ACCESS_KEY
+        sync: false
+      - key: PUBLIC_UPLOAD_DIR
+        value: /opt/render/project/src/apps/api/public-uploads
+      - key: INTERAKT_API_URL
+        value: https://api.interakt.ai/v1/public/message/
+      - key: SETTLEMENT_DAYS
+        value: "7"
+      - key: RETURN_WINDOW_DAYS
+        value: "7"
+      - key: CHECKOUT_QUOTE_TTL_MINUTES
+        value: "10"
+
+databases:
+  - name: gyami-global-postgres
+    plan: free
+    region: singapore
+    databaseName: gyami_global
+    user: gyami_global
+    ipAllowList: []

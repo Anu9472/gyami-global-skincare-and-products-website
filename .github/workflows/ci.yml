@@ -1,0 +1,89 @@
+name: Quality gate
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: quality-gate-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Typecheck, test and build
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: gyami_global_ci
+          POSTGRES_PASSWORD: gyami_global_ci
+          POSTGRES_DB: gyami_global
+        options: >-
+          --health-cmd "pg_isready -U gyami_global_ci -d gyami_global"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+    env:
+      DATABASE_URL: postgresql://gyami_global_ci:gyami_global_ci@127.0.0.1:5432/gyami_global?schema=public
+    steps:
+      - name: Check out source
+        # v4.4.0
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        # v4.4.0
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 22.12.0
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Reject high-severity dependency vulnerabilities
+        run: npm audit --audit-level=high
+
+      - name: Generate Prisma client
+        run: npm run prisma:generate --workspace @gyami-global/api
+
+      - name: Validate Prisma schema
+        run: npm run prisma:validate --workspace @gyami-global/api
+
+      - name: Apply every Prisma migration to a fresh database
+        run: npm run prisma:migrate --workspace @gyami-global/api
+
+      - name: Lint every workspace
+        run: npm run lint
+
+      - name: Typecheck every workspace
+        run: npm run typecheck
+
+      - name: Run automated tests
+        run: npm test
+
+      - name: Build production bundles
+        run: npm run build
+
+      - name: Verify API role workflow against the fresh database
+        env:
+          GYAMI_GLOBAL_SMOKE_PORT: 4010
+          NODE_ENV: development
+        run: bash scripts/ci-smoke-api-workflow.sh
+
+      - name: Verify deployment security and caching rules
+        run: npm run test:deployment-config
+
+      - name: Verify responsive panel layouts
+        run: |
+          google-chrome --version
+          npm run test:responsive
