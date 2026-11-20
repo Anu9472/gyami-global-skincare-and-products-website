@@ -1058,14 +1058,14 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.12; }
 .gyami-product-image--right img { width: 300%; max-width: none; margin-left: -200%; object-position: right center; }
 .gyami-product-image--detergent { background: radial-gradient(circle at 50% 28%, rgba(216,171,85,.38), transparent 33%), linear-gradient(145deg, #3c0b47, #18001d 72%); }
 .gyami-product-image--detergent img, .gyami-product-image--combo img { object-fit: cover; object-position: center; padding: 0; filter: saturate(1.04) contrast(1.025); }
-.gyami-product-info { min-height: 152px; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 18px; padding: 22px 24px 24px; }
+.gyami-product-info { min-height: 138px; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: start; gap: 18px; padding: 18px 24px 22px; }
 .gyami-product-info p { margin-bottom: 5px; color: #9a7a43; font-size: .61rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
 .gyami-product-info h3 { margin: 0; color: #3d1644; font: 750 1.2rem/1.25 'DM Sans', system-ui, sans-serif; }
 .gyami-product-price { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
 .gyami-product-price strong { color: #3d1644; font-size: 1.08rem; }
 .gyami-product-price del { color: #938995; font-size: .76rem; }
 .gyami-product-price span { padding: 4px 7px; border-radius: 999px; color: #684b14; background: #f5e5b5; font-size: .58rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
-.gyami-card-cta { align-self: end; padding-bottom: 3px; border-bottom: 1px solid #ba9147; color: #5c2465; font-size: .62rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.gyami-card-cta { align-self: end; justify-self: end; margin-bottom: 2px; padding-bottom: 3px; border-bottom: 1px solid #ba9147; color: #5c2465; font-size: .62rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
 .gyami-collection-action { display: flex; justify-content: center; margin-top: 45px; }
 
 .gyami-philosophy { padding-block: clamp(78px, 8vw, 112px); background: #fffdf9; }
@@ -1229,7 +1229,7 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.12; }
   .gyami-product-grid, .gyami-pillar-grid { grid-template-columns: 1fr; }
   .gyami-product-card:nth-child(even), .home-reveal--cards.is-visible .gyami-product-card:nth-child(even) { margin-top: 0; }
   .gyami-product-image { width: 100%; height: auto; margin: 0; border-radius: 24px 24px 16px 16px; }
-  .gyami-product-info { min-height: 0; grid-template-columns: 1fr auto; align-items: center; padding: 18px 20px 20px; }
+  .gyami-product-info { min-height: 0; grid-template-columns: 1fr auto; align-items: start; padding: 16px 18px 18px; }
   .gyami-card-cta { justify-self: start; }
   .gyami-philosophy-image { min-height: 280px; }
   .gyami-story h2 { font-size: clamp(2.35rem, 12vw, 3.2rem); }
