@@ -1250,6 +1250,13 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.12; }
 }
 
 @media (max-width: 420px) {
+  .gyami-hero { min-height: 808px; }
+  .gyami-hero-grid { min-height: 808px; padding-bottom: 126px; }
+  .gyami-hero-film { bottom: 116px; }
+  .gyami-hero-dots { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+  .gyami-hero-dots button { min-width: 0; height: 42px; padding-inline: 8px; }
+  .gyami-hero-dots span { font-size: .62rem; text-overflow: clip; }
+  .gyami-hero-product-name { bottom: 136px; }
   .gyami-product-info { grid-template-columns: 1fr; align-items: start; }
   .gyami-card-cta { justify-self: start; }
 }
