@@ -3,6 +3,7 @@ import type { CSSProperties, PointerEvent } from 'react';
 
 type HeroFilm = {
   name: string;
+  tabName: string;
   ritual: string;
   ingredients: readonly string[];
   poster: string;
@@ -13,6 +14,7 @@ type HeroFilm = {
 const films: readonly HeroFilm[] = [
   {
     name: 'Vitamin C',
+    tabName: 'Vitamin C',
     ritual: 'Brightening botanicals',
     ingredients: ['Orange extract', 'Vitamin C', 'Aloe vera'],
     src: '/media/gyami-vitamin-c-landscape-4k-web.mp4',
@@ -20,6 +22,7 @@ const films: readonly HeroFilm[] = [
   },
   {
     name: 'Charcoal',
+    tabName: 'Charcoal',
     ritual: 'Deep-cleansing minerals',
     ingredients: ['Activated charcoal', 'Neem', 'Aloe vera'],
     src: '/media/gyami-charcoal-landscape-4k-web.mp4',
@@ -27,6 +30,7 @@ const films: readonly HeroFilm[] = [
   },
   {
     name: 'Haldi · Chandan · Papaya',
+    tabName: 'Haldi',
     ritual: 'Ayurvedic-inspired care',
     ingredients: ['Turmeric', 'Sandalwood', 'Botanical extracts'],
     src: '/media/gyami-haldi-chandan-papaya-landscape-playback-web.mp4',
@@ -34,6 +38,7 @@ const films: readonly HeroFilm[] = [
   },
   {
     name: 'Gold Kesar',
+    tabName: 'Gold Kesar',
     ritual: 'Saffron radiance ritual',
     ingredients: ['Gold kesar', 'Saffron extract', 'Botanical care'],
     src: '/media/gyami-gold-kesar-landscape-playback-web.mp4',
@@ -179,7 +184,7 @@ export function GyamiHero() {
         </div>
 
         <div className="gyami-hero-dots" role="tablist" aria-label="Choose a product film">
-          {films.map((film, index) => <button aria-label={`Show ${film.name} film`} aria-selected={active === index} className={active === index ? 'is-active' : ''} key={film.name} onClick={() => transitionTo(index)} role="tab"><i /></button>)}
+          {films.map((film, index) => <button aria-label={`Show ${film.name} film`} aria-selected={active === index} className={active === index ? 'is-active' : ''} key={film.name} onClick={() => transitionTo(index)} role="tab"><i /><span>{film.tabName}</span></button>)}
         </div>
       </div>
 

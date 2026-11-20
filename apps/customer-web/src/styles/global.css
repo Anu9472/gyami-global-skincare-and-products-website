@@ -988,6 +988,7 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.12; }
 .gyami-hero-dots button { width: 28px; height: 28px; display: grid; place-items: center; padding: 0; border: 0; border-radius: 50%; background: transparent; transition: transform .28s ease; }
 .gyami-hero-dots button:hover { transform: scale(1.12); }
 .gyami-hero-dots i { width: 7px; height: 7px; border: 1px solid rgba(245,217,150,.58); border-radius: 50%; background: rgba(32,0,37,.48); transition: width .35s ease, background .35s ease, box-shadow .35s ease; }
+.gyami-hero-dots span { display: none; }
 .gyami-hero-dots button.is-active i { width: 22px; border-radius: 99px; background: linear-gradient(90deg, #fff0b6, #c78f31); background-size: 200% 100%; box-shadow: 0 0 16px rgba(230,189,105,.72); animation: gyami-dot-shimmer 13s linear infinite; }
 .gyami-scroll-cue { position: absolute; z-index: 2; left: 26px; bottom: 30px; display: flex; align-items: center; gap: 10px; color: #d2b978; font-size: .58rem; letter-spacing: .2em; text-transform: uppercase; transform: rotate(-90deg); transform-origin: left center; }
 .gyami-scroll-cue i { width: 38px; height: 1px; background: currentColor; }
@@ -1153,22 +1154,28 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.12; }
   .gyami-brand > img { width: 42px; height: 42px; flex-basis: 42px; }
   .gyami-brand strong { font-size: .84rem; }
   .gyami-hero { min-height: 780px; }
-  .gyami-hero-film { inset: 132px 12px 16px; border-radius: 28px; }
-  .gyami-hero-film video { inset: 0; width: 100%; height: 100%; object-position: 46% center; transform: translate3d(15%,22%,0) scale(1.12); }
+  .gyami-hero-film { inset: 124px 10px 82px; border-radius: 28px; }
+  .gyami-hero-film video { inset: 0; width: 100%; height: 100%; object-position: center; transform: translate3d(14%,7%,0) scale(1.035); transform-origin: center; }
   .gyami-hero-film video.is-active { animation-name: gyami-product-rotation-mobile; }
   .gyami-hero-product-still { right: -2%; top: 27%; width: 56vw; height: 58%; opacity: 0; }
   .gyami-hero-product-still.is-active { opacity: .72; transform: translate3d(0,6%,0) scale(1); }
   @keyframes gyami-product-rotation-mobile {
-    0% { transform: translate3d(15%,22%,0) scale(1.14) rotate(calc(var(--film-rotation) * -1)); }
-    52% { transform: translate3d(14.4%,21.8%,0) scale(1.115) rotate(var(--film-rotation)); }
-    100% { transform: translate3d(14%,22%,0) scale(1.1) rotate(0deg); }
+    0% { transform: translate3d(15%,7.5%,0) scale(1.065) rotate(calc(var(--film-rotation) * -1)); }
+    52% { transform: translate3d(14.5%,7%,0) scale(1.045) rotate(var(--film-rotation)); }
+    100% { transform: translate3d(14%,6.5%,0) scale(1.025) rotate(0deg); }
   }
-  .gyami-hero-film__veil { background: linear-gradient(180deg, rgba(20,0,23,.75), rgba(26,0,30,.7) 48%, rgba(16,0,19,.96)); }
-  .gyami-hero-grid { min-height: 780px; grid-template-columns: 1fr; align-content: space-between; gap: 36px; padding-block: 156px 46px; }
-  .gyami-hero-copy { width: min(500px, 92%); padding: 24px; border-radius: 22px; background: rgba(24,0,29,.46); backdrop-filter: blur(10px); }
+  .gyami-hero-film__veil { background: linear-gradient(180deg, rgba(20,0,23,.8), rgba(26,0,30,.54) 43%, rgba(16,0,19,.82)); }
+  .gyami-hero-grid { min-height: 780px; grid-template-columns: 1fr; align-content: space-between; gap: 36px; padding-block: 150px 104px; }
+  .gyami-hero-copy { width: min(500px, 84%); padding: 24px; border-radius: 22px; background: linear-gradient(100deg, rgba(24,0,29,.72), rgba(24,0,29,.46) 78%, rgba(24,0,29,.12)); backdrop-filter: blur(7px); }
   .gyami-hero-copy h1 { max-width: 100%; font-size: clamp(2.75rem, 12vw, 4.35rem); line-height: .94; }
   .gyami-hero-lede { max-width: 500px; font-size: .92rem; }
-  .gyami-hero-dots { right: 0; bottom: 33px; }
+  .gyami-hero-dots { position: absolute; left: 0; right: 0; bottom: 20px; display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 5px; padding: 5px; border: 1px solid rgba(239,207,136,.22); border-radius: 16px; background: rgba(21,0,25,.72); box-shadow: 0 14px 38px rgba(0,0,0,.28); backdrop-filter: blur(16px); }
+  .gyami-hero-dots button { width: auto; height: 42px; display: flex; align-items: center; justify-content: center; gap: 6px; border-radius: 11px; color: rgba(255,248,237,.72); }
+  .gyami-hero-dots button:hover { transform: none; }
+  .gyami-hero-dots button.is-active { color: #35103d; background: linear-gradient(135deg,#f8e6b6,#c8953e); box-shadow: 0 8px 22px rgba(0,0,0,.22); }
+  .gyami-hero-dots span { display: block; overflow: hidden; font-size: .58rem; font-weight: 800; letter-spacing: .025em; text-overflow: ellipsis; white-space: nowrap; }
+  .gyami-hero-dots i { width: 5px; height: 5px; flex: 0 0 5px; }
+  .gyami-hero-dots button.is-active i { width: 5px; background: #4a1452; box-shadow: none; }
   .gyami-hero-orbit { right: -60%; width: 135vw; }
   .gyami-scroll-cue { display: none; }
   .gyami-intro-grid { grid-template-columns: 1fr; }
@@ -1181,14 +1188,32 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.12; }
 }
 
 @media (max-width: 520px) {
-  .gyami-hero-actions { align-items: flex-start; flex-direction: column; gap: 20px; }
+  .gyami-hero-actions { align-items: center; flex-direction: row; gap: 14px; margin-top: 17px; }
+  .gyami-hero-actions .gyami-text-link { display: none; }
   .gyami-hero-principles { gap: 8px; font-size: .7rem; }
   .gyami-hero { min-height: 760px; }
-  .gyami-hero-grid { min-height: 760px; padding-block: 142px 32px; }
-  .gyami-hero-copy { width: 100%; padding: 22px 18px; }
-  .gyami-hero-copy h1 { font-size: clamp(2.35rem, 11.5vw, 3.15rem); letter-spacing: -.045em; }
-  .gyami-hero-lede { font-size: .84rem; line-height: 1.62; }
-  .gyami-hero-dots button { width: 38px; height: 38px; }
+  .gyami-hero-film { inset: 424px 10px 76px; border-radius: 22px; }
+  .gyami-hero-film video { transform: none; object-position: center; }
+  .gyami-hero-film video.is-active { animation-name: gyami-product-rotation-mobile-compact; }
+  @keyframes gyami-product-rotation-mobile-compact {
+    0% { transform: scale(1.035); filter: saturate(.96) brightness(.88); }
+    55% { transform: scale(1.012); filter: saturate(1.02) brightness(.94); }
+    100% { transform: scale(1); filter: saturate(1) brightness(.92); }
+  }
+  .gyami-hero-film__veil { background: linear-gradient(180deg, rgba(18,0,21,.12), transparent 48%, rgba(13,0,16,.32)); }
+  .gyami-hero-grid { min-height: 760px; padding-block: 138px 98px; }
+  .gyami-hero-copy { align-self: start; width: 100%; padding: 18px; border-radius: 20px; background: linear-gradient(135deg, rgba(24,0,29,.9), rgba(49,8,55,.76)); backdrop-filter: blur(8px); }
+  .gyami-hero-copy .gyami-kicker { margin-bottom: 9px; }
+  .gyami-hero-copy h1 { margin-bottom: 13px; font-size: clamp(2.22rem, 10.7vw, 2.85rem); letter-spacing: -.045em; }
+  .gyami-hero-lede { display: none; }
+  .gyami-ingredient-story { margin-top: 12px; }
+  .gyami-ingredient-story > p { margin-bottom: 7px; }
+  .gyami-ingredient-story > div { gap: 7px 12px; }
+  .gyami-ingredient-story span { font-size: .68rem; }
+  .gyami-hero-actions .button { min-height: 44px; padding: 11px 16px; font-size: .74rem; }
+  .gyami-hero-dots { bottom: 14px; }
+  .gyami-hero-dots button { height: 40px; }
+  .gyami-hero-dots span { font-size: .54rem; }
   .gyami-product-grid, .gyami-pillar-grid { grid-template-columns: 1fr; }
   .gyami-product-card:nth-child(even), .home-reveal--cards.is-visible .gyami-product-card:nth-child(even) { margin-top: 0; }
   .gyami-product-image { width: calc(100% - 12px); height: auto; margin: 6px 6px 0; border-radius: 20px; }
@@ -1203,8 +1228,9 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.12; }
 
 @media (max-width: 360px) {
   .shell { width: min(100% - 20px, 1180px); }
-  .gyami-hero-copy { padding-inline: 15px; }
-  .gyami-hero-copy h1 { font-size: 2.22rem; }
+  .gyami-hero-copy { padding: 16px 14px; }
+  .gyami-hero-copy h1 { font-size: 2rem; }
+  .gyami-hero-film { top: 404px; }
   .catalogue-controls { grid-template-columns: 1fr; }
   .gallery-zoom span { display: none; }
   .gallery-zoom { width: 40px; height: 40px; justify-content: center; padding: 0; }
