@@ -44,6 +44,7 @@ const films: readonly HeroFilm[] = [
 export function GyamiHero() {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [mediaStarted, setMediaStarted] = useState(false);
   const videos = useRef<Array<HTMLVideoElement | null>>([]);
   const changing = useRef(false);
 
@@ -61,7 +62,12 @@ export function GyamiHero() {
   }, []);
 
   useEffect(() => {
-    if (paused) return undefined;
+    const startMedia = window.setTimeout(() => setMediaStarted(true), 900);
+    return () => window.clearTimeout(startMedia);
+  }, []);
+
+  useEffect(() => {
+    if (paused || !mediaStarted) return undefined;
     const warmVideo = (index: number) => {
       const video = videos.current[index];
       if (!video || video.preload === 'auto') return;
@@ -72,14 +78,14 @@ export function GyamiHero() {
     return () => {
       window.clearTimeout(nextFilm);
     };
-  }, [active, paused]);
+  }, [active, mediaStarted, paused]);
 
   useEffect(() => {
     const video = videos.current[active];
-    if (!video) return undefined;
+    if (!video || !mediaStarted) return undefined;
     if (paused) video.pause();
     else void video.play().catch(() => setPaused(true));
-  }, [active, paused]);
+  }, [active, mediaStarted, paused]);
 
   const transitionTo = useCallback((index: number) => {
     if (index === active || changing.current) return;
@@ -115,10 +121,10 @@ export function GyamiHero() {
   }, [active, paused]);
 
   useEffect(() => {
-    if (paused) return undefined;
+    if (paused || !mediaStarted) return undefined;
     const slider = window.setTimeout(() => transitionTo((active + 1) % films.length), 13000);
     return () => window.clearTimeout(slider);
-  }, [active, paused, transitionTo]);
+  }, [active, mediaStarted, paused, transitionTo]);
 
   const activeFilm = films[active] ?? films[0]!;
 
@@ -134,9 +140,8 @@ export function GyamiHero() {
             loop
             muted
             playsInline
-            autoPlay={index === 0}
             poster={film.poster}
-            preload={index === 0 ? 'auto' : 'none'}
+            preload="none"
           >
             <source src={film.src} type="video/mp4" />
           </video>
