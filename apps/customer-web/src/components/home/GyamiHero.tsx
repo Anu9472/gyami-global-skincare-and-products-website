@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { CSSProperties, PointerEvent } from 'react';
 
-const FILM_START_TIME = 0.9;
-const FILM_DISPLAY_TIME = 5000;
+const FILM_START_TIME = 0;
+const FILM_DISPLAY_TIME = 11800;
+const FILM_CROSSFADE_TIME = 1100;
 
 type HeroFilm = {
   name: string;
@@ -52,7 +53,7 @@ const films: readonly HeroFilm[] = [
 export function GyamiHero() {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
-  const [mediaStarted, setMediaStarted] = useState(false);
+  const [mediaStarted] = useState(true);
   const videos = useRef<Array<HTMLVideoElement | null>>([]);
   const changing = useRef(false);
 
@@ -70,30 +71,11 @@ export function GyamiHero() {
   }, []);
 
   useEffect(() => {
-    const startMedia = window.setTimeout(() => setMediaStarted(true), 900);
-    return () => window.clearTimeout(startMedia);
-  }, []);
-
-  useEffect(() => {
-    if (paused || !mediaStarted) return undefined;
-    const warmVideo = (index: number) => {
-      const video = videos.current[index];
-      if (!video || video.preload === 'auto') return;
-      video.preload = 'auto';
-      video.load();
-    };
-    const nextFilm = window.setTimeout(() => warmVideo((active + 1) % films.length), 2600);
-    return () => {
-      window.clearTimeout(nextFilm);
-    };
-  }, [active, mediaStarted, paused]);
-
-  useEffect(() => {
     const video = videos.current[active];
     if (!video || !mediaStarted) return undefined;
     if (paused) video.pause();
     else {
-      if (video.currentTime < FILM_START_TIME || video.currentTime > FILM_START_TIME + 5.4) video.currentTime = FILM_START_TIME;
+      if (video.currentTime < FILM_START_TIME || video.currentTime > 12.2) video.currentTime = FILM_START_TIME;
       void video.play().catch(() => setPaused(true));
     }
   }, [active, mediaStarted, paused]);
@@ -115,17 +97,31 @@ export function GyamiHero() {
       return;
     }
     next.preload = 'auto';
-    if (next.readyState < HTMLMediaElement.HAVE_CURRENT_DATA) next.load();
+    if (next.readyState < HTMLMediaElement.HAVE_FUTURE_DATA) next.load();
     next.currentTime = FILM_START_TIME;
+    let revealed = false;
     const reveal = () => {
+      if (revealed) return;
+      revealed = true;
       setActive(index);
       window.setTimeout(() => {
         previous?.pause();
         changing.current = false;
-      }, 950);
+      }, FILM_CROSSFADE_TIME);
     };
     if (paused) reveal();
-    else void next.play().then(reveal).catch(() => {
+    else void next.play().then(() => {
+      const requestDecodedFrame = (next as HTMLVideoElement & {
+        requestVideoFrameCallback?: (callback: () => void) => number;
+      }).requestVideoFrameCallback;
+      if (typeof requestDecodedFrame === 'function') {
+        requestDecodedFrame.call(next, () => reveal());
+      } else {
+        const revealWhenReady = () => window.requestAnimationFrame(reveal);
+        if (next.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) revealWhenReady();
+        else next.addEventListener('loadeddata', revealWhenReady, { once: true });
+      }
+    }).catch(() => {
       changing.current = false;
       setPaused(true);
     });
@@ -152,7 +148,7 @@ export function GyamiHero() {
             onLoadedMetadata={(event) => { event.currentTarget.currentTime = FILM_START_TIME; }}
             playsInline
             poster={film.poster}
-            preload="none"
+            preload={index < 2 ? 'auto' : 'metadata'}
           >
             <source src={film.src} type="video/mp4" />
           </video>

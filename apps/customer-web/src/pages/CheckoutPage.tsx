@@ -205,7 +205,7 @@ export function CheckoutPage() {
         <div>
           <span className="eyebrow">Secure checkout</span>
           <h1>Review your delivery</h1>
-          <p>One customer checkout, grouped vendor-wise for fulfilment.</p>
+          <p>Confirm your address, order and preferred payment method.</p>
         </div>
       </div>
       <div className="checkout-layout">
@@ -215,7 +215,7 @@ export function CheckoutPage() {
               <MapPin />
               <div>
                 <h2>Delivery address</h2>
-                <p>Select a saved address for the backend shipping quote.</p>
+                <p>Select where you would like your GYAMI order delivered.</p>
               </div>
               <Link to="/addresses">Manage</Link>
             </div>
@@ -264,14 +264,14 @@ export function CheckoutPage() {
             <div className="card-title">
               <Truck />
               <div>
-                <h2>Items by vendor</h2>
-                <p>Each vendor group receives its own shipment and tracking.</p>
+                <h2>Order items</h2>
+                <p>Review your selected products before placing the order.</p>
               </div>
             </div>
             {vendorGroups.map((group) => (
               <div className="checkout-vendor" key={group.vendor.id}>
                 <div>
-                  <strong>{group.vendor.name}</strong>
+                  <strong>GYAMI products</strong>
                   <span>
                     {group.items.length} product
                     {group.items.length === 1 ? "" : "s"}
@@ -396,12 +396,6 @@ export function CheckoutPage() {
                 <span>Product subtotal</span>
                 <strong>{formatMoney(summary.productSubtotal)}</strong>
               </div>
-              {summary.vendors.map((group) => (
-                <div key={group.vendor.id}>
-                  <span>Shipping · {group.vendor.name}</span>
-                  <strong>{formatMoney(group.shipping)}</strong>
-                </div>
-              ))}
               <div>
                 <span>Total shipping</span>
                 <strong>{formatMoney(summary.totalShipping)}</strong>
@@ -411,8 +405,8 @@ export function CheckoutPage() {
                 <strong>{formatMoney(summary.payableTotal)}</strong>
               </div>
               <small>
-                GST-inclusive product prices. Every amount is supplied by the
-                checkout API.
+                GST-inclusive prices. Your final total is securely confirmed
+                before the order is placed.
               </small>
               {!pendingOrder && (
                 <button
@@ -422,9 +416,7 @@ export function CheckoutPage() {
                 >
                   {createOrder.isPending
                     ? "Creating order…"
-                    : runtimeConfig.isMock
-                      ? "Place development COD order"
-                      : paymentMethod === "COD"
+                    : paymentMethod === "COD"
                         ? "Place COD order"
                         : "Create order & pay securely"}
                 </button>
@@ -433,8 +425,8 @@ export function CheckoutPage() {
           ) : (
             <>
               <p className="summary-note">
-                Select an address, then request a fresh backend quote for price,
-                stock and vendor-wise shipping.
+                Select an address to confirm product availability, delivery and
+                your final payable amount.
               </p>
               <button
                 className="button button--primary button--full"
@@ -452,7 +444,7 @@ export function CheckoutPage() {
             </p>
           )}
           <span className="secure-note">
-            <ShieldCheck size={17} /> Backend remains the source of truth.
+            <ShieldCheck size={17} /> Securely verified before you place the order.
           </span>
         </aside>
       </div>

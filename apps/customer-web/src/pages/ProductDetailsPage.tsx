@@ -4,16 +4,13 @@ import {
   Check,
   ChevronRight,
   ImageOff,
-  MapPin,
   Maximize2,
   Minus,
-  PackageCheck,
   Plus,
   RotateCcw,
   ShieldCheck,
   ShoppingBag,
   Star,
-  Store,
   Truck,
   X,
 } from 'lucide-react';
@@ -42,7 +39,7 @@ function ProductImage({ src, alt, className = '' }: { src?: string; alt: string;
     );
   }
 
-  return <img className={className} src={src} alt={alt} width="900" height="900" decoding="async" onError={() => setFailed(true)} />;
+  return <img className={className} src={src} alt={alt} width="900" height="900" decoding="async" fetchPriority="high" onError={() => setFailed(true)} />;
 }
 
 function ProductDetailsSkeleton() {
@@ -107,6 +104,7 @@ export function ProductDetailsPage() {
   const currentImage = images[activeImage];
   const outOfStock = product.stockStatus === 'OUT_OF_STOCK' || product.availableQuantity < 1;
   const discount = discountPercentage(product.price, product.mrp);
+  const selectedTotal = { ...product.price, amount: product.price.amount * quantity };
   const productType = product.productType === 'RAW_COMMODITY' ? 'Raw commodity' : 'Value-added product';
   const dimensions = product.dimensions
     ? [product.dimensions.lengthCm, product.dimensions.widthCm, product.dimensions.heightCm]
@@ -166,7 +164,6 @@ export function ProductDetailsPage() {
             <strong>{product.rating.toFixed(1)}</strong>
             <span>{product.reviewCount} {product.reviewCount === 1 ? 'review' : 'reviews'}</span>
           </a>}
-          <p className="vendor-byline"><Store aria-hidden="true" /> Presented by <strong>{product.vendor.name}</strong>{product.vendor.location && <><span>·</span><MapPin aria-hidden="true" /> {product.vendor.location}</>}</p>
           <p className="detail-description detail-description--summary">{shortDescription}</p>
 
           <div className="pdp-price-box">
@@ -191,31 +188,37 @@ export function ProductDetailsPage() {
             <div><dt>Product type</dt><dd>{productType}</dd></div>
           </dl>
 
-          <div className="purchase-panel">
-            <div className="purchase-panel__top">
-              <label htmlFor="product-quantity">Quantity</label>
-              <div className="quantity-control">
-                <button type="button" aria-label="Decrease quantity" disabled={quantity <= 1 || addToCart.isPending} onClick={() => setQuantity((value) => Math.max(1, value - 1))}><Minus /></button>
-                <output id="product-quantity" aria-live="polite">{quantity}</output>
-                <button type="button" aria-label="Increase quantity" disabled={outOfStock || quantity >= product.availableQuantity || addToCart.isPending} onClick={() => setQuantity((value) => Math.min(product.availableQuantity, value + 1))}><Plus /></button>
-              </div>
-            </div>
-            <div className="purchase-actions">
-              <button className="button button--primary" type="button" disabled={outOfStock || addToCart.isPending} onClick={() => void add()}><ShoppingBag /> {addToCart.isPending ? 'Adding…' : 'Add to cart'}</button>
-              <button className="button button--accent" type="button" disabled={outOfStock || addToCart.isPending} onClick={() => void add(true)}>Buy now</button>
-            </div>
-            {notice && <p className={`pdp-notice pdp-notice--${notice.kind}`} role={notice.kind === 'error' ? 'alert' : 'status'}>{notice.message}</p>}
-          </div>
         </section>
+
+        <div className="purchase-panel purchase-panel--primary">
+          <div className="purchase-panel__top">
+            <label htmlFor="product-quantity">Quantity</label>
+            <div className="quantity-control">
+              <button type="button" aria-label="Decrease quantity" disabled={quantity <= 1 || addToCart.isPending} onClick={() => setQuantity((value) => Math.max(1, value - 1))}><Minus /></button>
+              <output id="product-quantity" aria-live="polite">{quantity}</output>
+              <button type="button" aria-label="Increase quantity" disabled={outOfStock || quantity >= product.availableQuantity || addToCart.isPending} onClick={() => setQuantity((value) => Math.min(product.availableQuantity, value + 1))}><Plus /></button>
+            </div>
+          </div>
+          <div className="purchase-total" aria-live="polite">
+            <span>Total for {quantity} {quantity === 1 ? 'item' : 'items'}</span>
+            <strong>{formatMoney(selectedTotal)}</strong>
+            {quantity > 1 && <small>{formatMoney(product.price)} × {quantity}</small>}
+          </div>
+          <div className="purchase-actions">
+            <button className="button button--primary" type="button" disabled={outOfStock || addToCart.isPending} onClick={() => void add()}><ShoppingBag /> {addToCart.isPending ? 'Adding…' : 'Add to cart'}</button>
+            <button className="button button--accent" type="button" disabled={outOfStock || addToCart.isPending} onClick={() => void add(true)}>Buy now</button>
+          </div>
+          {notice && <p className={`pdp-notice pdp-notice--${notice.kind}`} role={notice.kind === 'error' ? 'alert' : 'status'}>{notice.message}</p>}
+        </div>
       </article>
 
       <section className="pdp-service-grid" aria-label="Delivery and purchase information">
-        <div><Truck /><span><strong>Delivery across India</strong>Availability and charges will be confirmed when the collection launches.</span></div>
+        <div><Truck /><span><strong>Delivery across India</strong>Availability and charges are confirmed securely during checkout.</span></div>
         <div><RotateCcw /><span><strong>Customer-first support</strong>Clear order, return, and assistance information throughout your journey.</span></div>
         <div><ShieldCheck /><span><strong>Secure checkout</strong>Price, availability, and final totals are validated before payment.</span></div>
       </section>
 
-      <div className="pdp-content-grid">
+      <div className="pdp-content-grid pdp-content-grid--full">
         <div className="pdp-content-main">
           <section className="pdp-content-card" id="product-description">
             <h2>Product description</h2><p>{product.description}</p>
@@ -234,13 +237,6 @@ export function ProductDetailsPage() {
             </dl>
           </section>
         </div>
-        <aside className="pdp-seller-card">
-          <Store aria-hidden="true" /><p>Presented by</p><h2>{product.vendor.name}</h2>
-          {product.vendor.rating > 0 && <p><Star fill="currentColor" aria-hidden="true" /> {product.vendor.rating.toFixed(1)} vendor rating</p>}
-          {product.vendor.location && <p><MapPin aria-hidden="true" /> {product.vendor.location}</p>}
-          {product.vendor.productCount > 0 && <p><PackageCheck aria-hidden="true" /> {product.vendor.productCount} approved {product.vendor.productCount === 1 ? 'product' : 'products'}</p>}
-          <Link className="button button--secondary" to={`/products?vendorId=${encodeURIComponent(product.vendor.id)}`}>View seller products</Link>
-        </aside>
       </div>
 
       <section className="pdp-reviews" id="customer-reviews">

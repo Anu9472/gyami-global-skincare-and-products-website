@@ -41,7 +41,7 @@ export function ProductCard({ product }: { product: Product }) {
       <div className="product-card-body">
         {product.reviewCount > 0 ? <div className="rating"><Star size={14} fill="currentColor" aria-hidden="true" /><span>{product.rating}</span><span className="muted">({product.reviewCount})</span></div> : <div className="rating rating--new">Opening collection</div>}
         <Link to={`/products/${product.id}`}><h3>{product.name}</h3></Link>
-        <p className="product-meta">{product.weight} · {product.vendor.name}</p>
+        <p className="product-meta">{product.weight} · GST inclusive</p>
         <div className="product-card-purchase">
           <div className="product-price">{comingSoon ? <strong className="launch-price">Price to be announced</strong> : <><strong>{formatMoney(product.price)}</strong>{product.mrp && <del>{formatMoney(product.mrp)}</del>}<small>GST incl.</small></>}</div>
           <button

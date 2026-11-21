@@ -8,7 +8,7 @@ afterEach(() => {
 });
 
 describe('PageTransition', () => {
-  it('keeps both pages mounted during the slide and completes after 480ms', async () => {
+  it('keeps both pages mounted during the slide and completes after 220ms', async () => {
     vi.useFakeTimers();
     const view = render(<PageTransition transitionKey="/" direction="forward"><div>Home page</div></PageTransition>);
 
@@ -18,7 +18,7 @@ describe('PageTransition', () => {
     expect(screen.getByText('Products page')).toBeInTheDocument();
     expect(view.container.querySelector('.is-forward')).not.toBeNull();
 
-    await act(async () => vi.advanceTimersByTimeAsync(480));
+    await act(async () => vi.advanceTimersByTimeAsync(220));
 
     expect(screen.queryByText('Home page')).not.toBeInTheDocument();
     expect(screen.getByText('Products page')).toBeInTheDocument();

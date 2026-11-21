@@ -53,9 +53,9 @@ export const mockProducts: Product[] = [
   {
     id: 'prod-gold-kesar-facewash', slug: 'gold-kesar-facewash', name: 'Gold Kesar Facewash',
     categoryId: 'cat-skincare', categoryName: 'Skincare', productType: 'VALUE_ADDED', vendor: gyamiGlobal,
-    ...launchDetails, price: money(0), mrp: undefined, stockStatus: 'OUT_OF_STOCK', availableQuantity: 0, weight: '100 ml', images: [goldKesarImage],
+    ...launchDetails, price: money(199), mrp: money(249), weight: '100 ml', images: [goldKesarImage],
     description: 'A premium saffron-inspired cleansing ritual presented in GYAMI Global’s signature royal-purple and champagne-gold design.',
-    ingredients: ['Kesar (Saffron) Extract', 'Botanical Extracts'], specifications: { 'Collection': 'Daily Routine Skincare', 'Net volume': '100 ml', 'Availability': 'Launching soon' },
+    ingredients: ['Kesar (Saffron) Extract', 'Botanical Extracts'], specifications: { 'Collection': 'Daily Routine Skincare', 'Net volume': '100 ml', 'Offer': 'Launch offer' },
   },
   {
     id: 'prod-facewash-trio-combo', slug: 'facewash-trio-combo', name: 'GYAMI Facewash Trio Combo',
@@ -67,9 +67,9 @@ export const mockProducts: Product[] = [
   {
     id: 'prod-detergent-liquid', slug: 'detergent-liquid', name: 'Detergent Liquid',
     categoryId: 'cat-home-care', categoryName: 'Home Care', productType: 'VALUE_ADDED', vendor: gyamiGlobal,
-    ...launchDetails, price: money(0), mrp: undefined, stockStatus: 'OUT_OF_STOCK', availableQuantity: 0, weight: '1 L', images: [detergentImage],
+    ...launchDetails, price: money(299), mrp: money(399), weight: '1 L', images: [detergentImage],
     description: 'A liquid detergent for everyday fabric care, carrying the same polished GYAMI Global presentation into the home.',
-    ingredients: [], specifications: { 'Collection': 'Premium Home Care', 'Net volume': '1 litre', 'Availability': 'Launching soon' },
+    ingredients: [], specifications: { 'Collection': 'Premium Home Care', 'Net volume': '1 litre', 'Offer': 'Launch offer' },
   },
 ];
 

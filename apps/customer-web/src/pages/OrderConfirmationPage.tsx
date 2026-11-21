@@ -44,12 +44,12 @@ export function OrderConfirmationPage() {
     </section>
 
     <section className="confirmation-orders" aria-labelledby="sub-orders-title">
-      <div className="confirmation-section-heading"><div><span className="eyebrow">Fulfilment details</span><h2 id="sub-orders-title">Vendor-wise sub-orders</h2></div><p>{value.vendorOrders.length} independent shipment{value.vendorOrders.length === 1 ? '' : 's'}</p></div>
+      <div className="confirmation-section-heading"><div><span className="eyebrow">Delivery details</span><h2 id="sub-orders-title">Your shipment</h2></div><p>{value.vendorOrders.length} shipment{value.vendorOrders.length === 1 ? '' : 's'} being prepared</p></div>
       {value.vendorOrders.map((vendorOrder) => <article key={vendorOrder.id}>
         <div className="confirmation-order-icon"><PackageCheck aria-hidden="true" /></div>
         <div className="confirmation-order-copy">
-          <span>Sold and fulfilled by</span>
-          <strong>{vendorOrder.vendor.name}</strong>
+          <span>GYAMI order</span>
+          <strong>Carefully packed for delivery</strong>
           <small>Order #{vendorOrder.vendorOrderNumber ?? vendorOrder.id}</small>
           <p>{vendorOrder.items.length} item{vendorOrder.items.length === 1 ? '' : 's'} · {vendorOrder.estimatedDelivery ?? 'Delivery estimate pending'}</p>
           {vendorOrder.shipment && <p className="confirmation-shipment"><Truck size={14} /> {vendorOrder.shipment.statusLabel}{vendorOrder.shipment.awb ? ` · AWB ${vendorOrder.shipment.awb}` : ''}</p>}

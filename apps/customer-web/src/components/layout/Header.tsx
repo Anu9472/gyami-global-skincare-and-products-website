@@ -1,7 +1,7 @@
 import { Bell, LogOut, Menu, Search, ShoppingBag, UserRound, X } from 'lucide-react';
 import { useState } from 'react';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
-import logoImage from '../../assets/gyami/gyami-logo.jpeg';
+import logoImage from '../../assets/gyami/gyami-logo-small.jpeg';
 import { useAuth } from '../../auth/AuthProvider';
 import { useCart } from '../../features/cart/hooks';
 
@@ -27,7 +27,7 @@ export function Header() {
       <div className="announcement">Premium skincare &amp; beauty · Luxury in every touch</div>
       <div className="shell header-main">
         <button className="icon-button mobile-menu" type="button" aria-label={menuOpen ? 'Close navigation' : 'Open navigation'} aria-expanded={menuOpen} onClick={() => setMenuOpen((value) => !value)}>{menuOpen ? <X /> : <Menu />}</button>
-        <Link className="brand gyami-brand" to="/" aria-label="GYAMI Global home"><img src={logoImage} alt="" /><span><strong>GYAMI GLOBAL</strong><small>Private Limited</small></span></Link>
+        <Link className="brand gyami-brand" to="/" aria-label="GYAMI Global home"><img src={logoImage} alt="" width="320" height="320" decoding="async" /><span><strong>GYAMI GLOBAL</strong><small>Private Limited</small></span></Link>
         <form className="header-search" role="search" onSubmit={submitSearch}><Search size={19} aria-hidden="true" /><label className="sr-only" htmlFor="site-search">Search the GYAMI collection</label><input id="site-search" value={search} onChange={(event) => setSearch(event.target.value)} placeholder={isHome ? 'Search' : 'Search the collection…'} /></form>
         <nav className={`header-actions ${menuOpen ? 'is-open' : ''}`} aria-label="Customer navigation">
           <NavLink to="/products" onClick={() => setMenuOpen(false)}>Collection</NavLink>
