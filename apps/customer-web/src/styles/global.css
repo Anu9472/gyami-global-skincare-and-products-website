@@ -1023,6 +1023,15 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.12; }
     linear-gradient(90deg, rgba(248,242,252,.99) 0%, rgba(248,242,252,.97) 31%, rgba(248,242,252,.68) 49%, rgba(248,242,252,.06) 70%),
     linear-gradient(180deg, rgba(255,255,255,.18), transparent 64%, rgba(73,20,81,.08));
 }
+.ritual-hero--lifestyle-slide .ritual-hero__photography img {
+  object-position: 68% center;
+  filter: saturate(.98) contrast(1.03) brightness(.98);
+}
+.ritual-hero--lifestyle-slide .ritual-hero__photo-wash {
+  background:
+    linear-gradient(90deg, rgba(248,242,252,.98) 0%, rgba(248,242,252,.94) 30%, rgba(248,242,252,.62) 44%, rgba(248,242,252,.12) 59%, transparent 72%),
+    linear-gradient(180deg, rgba(255,255,255,.08), transparent 62%, rgba(48,9,55,.16));
+}
 .ritual-hero__layout {
   min-height: 650px;
   grid-template-columns: 1fr;
