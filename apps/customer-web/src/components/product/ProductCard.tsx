@@ -2,7 +2,7 @@ import { BadgeCheck, Plus, Star } from 'lucide-react';
 import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import type { Product } from '../../api/types';
-import { getErrorMessage } from '../../api/errors';
+import { ApiError, getErrorMessage } from '../../api/errors';
 import { useAuth } from '../../auth/AuthProvider';
 import { useAddToCart } from '../../features/cart/hooks';
 import { discountPercentage, formatMoney } from '../ui/format';
@@ -18,14 +18,19 @@ export function ProductCard({ product }: { product: Product }) {
   const comingSoon = product.price.amount === 0;
 
   const add = async () => {
+    const returnTo = `${location.pathname}${location.search}`;
     if (!isAuthenticated) {
-      void navigate('/login', { state: { from: location.pathname } });
+      navigate('/login', { state: { from: returnTo } });
       return;
     }
     try {
       await addToCart.mutateAsync({ productId: product.id, quantity: 1 });
       setNotice(`${product.name} added to cart.`);
     } catch (error) {
+      if (error instanceof ApiError && error.status === 401) {
+        navigate('/login', { state: { from: returnTo, notice: 'Please sign in to add products to your cart.' } });
+        return;
+      }
       setNotice(getErrorMessage(error));
     }
   };
@@ -50,7 +55,11 @@ export function ProductCard({ product }: { product: Product }) {
             disabled={outOfStock || addToCart.isPending}
             aria-label={addToCart.isPending ? `Adding ${product.name} to cart` : outOfStock ? `${product.name} is unavailable` : `Add ${product.name} to cart`}
             title={outOfStock ? 'Launching soon' : 'Add to cart'}
-            onClick={() => void add()}
+            onClick={(event) => {
+              event.preventDefault();
+              event.stopPropagation();
+              void add();
+            }}
           >
             <Plus aria-hidden="true" />
           </button>
