@@ -188,9 +188,7 @@ export function ProductDetailsPage() {
             <div><dt>Product type</dt><dd>{productType}</dd></div>
           </dl>
 
-        </section>
-
-        <div className="purchase-panel purchase-panel--primary">
+          <div className="purchase-panel purchase-panel--primary">
           <div className="purchase-panel__top">
             <label htmlFor="product-quantity">Quantity</label>
             <div className="quantity-control">
@@ -209,7 +207,8 @@ export function ProductDetailsPage() {
             <button className="button button--accent" type="button" disabled={outOfStock || addToCart.isPending} onClick={() => void add(true)}>Buy now</button>
           </div>
           {notice && <p className={`pdp-notice pdp-notice--${notice.kind}`} role={notice.kind === 'error' ? 'alert' : 'status'}>{notice.message}</p>}
-        </div>
+          </div>
+        </section>
       </article>
 
       <section className="pdp-service-grid" aria-label="Delivery and purchase information">
