@@ -1144,7 +1144,7 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.12; }
     linear-gradient(90deg,rgba(255,252,255,.82) 0%,rgba(255,252,255,.5) 46%,transparent 64%),
     linear-gradient(180deg,rgba(255,255,255,.08),transparent 62%,rgba(17,0,22,.18));
 }
-.ritual-hero--product-slide .ritual-hero__featured-product { right: clamp(4%,6.5vw,9%); bottom: 28px; width: clamp(380px,30vw,560px); height: min(78vh,720px); overflow: hidden; border: 1px solid rgba(249,223,157,.46); border-radius: 32px; background: rgba(31,3,36,.6); box-shadow: 0 34px 90px rgba(18,0,23,.42), 0 0 0 1px rgba(255,255,255,.1) inset; backdrop-filter: blur(14px); }
+.ritual-hero--product-slide .ritual-hero__featured-product { right: clamp(2.5%,4.5vw,6%); bottom: 28px; width: clamp(430px,34vw,650px); height: min(78vh,720px); overflow: hidden; border: 1px solid rgba(249,223,157,.46); border-radius: 32px; background: rgba(31,3,36,.6); box-shadow: 0 34px 90px rgba(18,0,23,.42), 0 0 0 1px rgba(255,255,255,.1) inset; backdrop-filter: blur(14px); }
 .ritual-hero--product-slide .ritual-hero__featured-product::before { content: ""; position: absolute; inset: 12px; z-index: 1; border: 1px solid rgba(245,213,135,.22); border-radius: 23px; pointer-events: none; }
 .ritual-hero--product-slide .ritual-hero__featured-product > img { width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: center; filter: saturate(1.03) contrast(1.02); }
 .ritual-hero--product-slide .ritual-hero__featured-product--citrus > img { object-position: center 42%; }
@@ -1164,7 +1164,7 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.12; }
 @keyframes ritual-copy-reveal { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
 
 @media (max-width: 1000px) {
-  .ritual-hero--product-slide .ritual-hero__featured-product { right: 3%; bottom: 28px; width: min(38vw,430px); height: min(66vh,580px); }
+  .ritual-hero--product-slide .ritual-hero__featured-product { right: 2%; bottom: 28px; width: min(42vw,480px); height: min(66vh,580px); }
   .ritual-hero__selector button { grid-template-columns: 40px 1fr; gap: 8px; }
   .ritual-hero__thumb { width: 40px; }
 }
