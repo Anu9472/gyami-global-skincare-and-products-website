@@ -1333,10 +1333,10 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.12; }
 .gyami-product-image--kesar { background: radial-gradient(circle at 50% 42%, rgba(159,84,169,.52), transparent 29%), radial-gradient(ellipse at 50% 104%, rgba(230,187,92,.4), transparent 40%), linear-gradient(145deg,#35063e,#16001b 76%); }
 .gyami-product-image--film::after,
 .gyami-product-image--kesar::after { background: radial-gradient(circle at 50% 45%, rgba(255,222,151,.13), transparent 34%), linear-gradient(180deg,rgba(255,255,255,.04),transparent 42%,rgba(11,0,14,.18)); }
-.gyami-product-image--detergent img { object-fit: cover; object-position: center; padding: 0; filter: saturate(1.05) contrast(1.035); transform: scale(1.11); }
-.gyami-product-image--combo img { object-fit: cover; object-position: center 32%; padding: 0; filter: saturate(1.05) contrast(1.035); transform: scale(1.035); }
-.gyami-product-card:hover .gyami-product-image--detergent img { transform: scale(1.145); }
-.gyami-product-card:hover .gyami-product-image--combo img { transform: scale(1.06); }
+.gyami-product-image--detergent img,
+.gyami-product-image--combo img { object-fit: contain; object-position: center; padding: 0; filter: saturate(1.05) contrast(1.035); transform: scale(.96); }
+.gyami-product-card:hover .gyami-product-image--detergent img,
+.gyami-product-card:hover .gyami-product-image--combo img { transform: scale(.985); }
 .gyami-product-info { min-height: 138px; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: start; gap: 18px; padding: 18px 24px 22px; }
 .gyami-product-info p { margin-bottom: 5px; color: #9a7a43; font-size: .61rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
 .gyami-product-info h3 { margin: 0; color: #3d1644; font: 750 1.2rem/1.25 'DM Sans', system-ui, sans-serif; }
