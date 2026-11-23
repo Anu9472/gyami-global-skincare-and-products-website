@@ -643,15 +643,20 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.12; }
 .order-vendor-preview > div > span { display: grid; gap: 3px; }
 .order-vendor-preview small, .order-card > footer > span { display: flex; align-items: center; gap: 5px; color: var(--muted); font-size: .74rem; }
 
+.order-details-page { padding-top: 24px; padding-bottom: 56px; }
+.order-details-page > .back-link { margin-bottom: 12px; }
+.order-details-page > .order-detail-heading { margin-bottom: 18px; }
+.order-details-page .order-detail-heading h1 { font-size: clamp(2.5rem, 4vw, 3.7rem); }
 .order-detail-heading > div:last-child { display: flex; align-items: center; gap: 16px; }
 .order-overview { display: grid; grid-template-columns: repeat(4, 1fr); margin-bottom: 18px; overflow: hidden; border: 1px solid var(--line); border-radius: 15px; background: var(--line); gap: 1px; }
 .order-overview > div { min-height: 105px; display: flex; flex-direction: column; align-items: start; justify-content: center; gap: 7px; padding: 18px; background: white; }
 .order-overview span, .order-overview small { color: var(--muted); font-size: .72rem; }
-.delivery-address { display: flex; gap: 14px; padding: 20px; margin-bottom: 36px; border: 1px solid var(--line); border-radius: 14px; background: white; }
+.delivery-address { display: flex; gap: 14px; padding: 20px; margin-bottom: 24px; border: 1px solid var(--line); border-radius: 14px; background: white; }
 .delivery-address > svg { color: var(--green-800); }
 .delivery-address h2 { margin-bottom: 6px; font-size: 1.2rem; }
 .delivery-address p { margin: 0; color: var(--muted); line-height: 1.65; }
 .vendor-orders { display: grid; gap: 20px; }
+.order-details-page .vendor-orders > .section-heading { margin-bottom: 0; }
 .vendor-order-card { overflow: hidden; border: 1px solid var(--line); border-radius: 16px; background: white; }
 .vendor-order-card > header { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 18px 22px; background: #f7f7f2; }
 .vendor-order-card > header span, .vendor-order-card > header small { color: var(--muted); font-size: .7rem; }
