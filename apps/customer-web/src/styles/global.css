@@ -235,10 +235,10 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.12; }
 .product-grid--compact { grid-template-columns: repeat(4, 1fr); }
 .product-card { position: relative; overflow: hidden; background: linear-gradient(145deg, #fff, #fffaf4); border: 1px solid rgba(184,129,40,.17); border-radius: 20px; box-shadow: 0 12px 34px rgba(54,10,62,.065); transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
 .product-card:hover { border-color: rgba(184,129,40,.42); transform: translateY(-5px); box-shadow: var(--shadow); }
-.product-card-image { position: relative; width: 100%; aspect-ratio: 16 / 9; display: block; overflow: hidden; background: #f3f0e7; }
-.product-card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform .35s ease; }
+.product-card-image { position: relative; width: 100%; aspect-ratio: 3 / 4; display: block; overflow: hidden; background: linear-gradient(145deg, #35103e, #17001c); }
+.product-card-image img { width: 100%; height: 100%; object-fit: contain; object-position: center; transform: scale(.97); transition: transform .35s ease; }
 .product-image-empty { width: 100%; height: 100%; display: grid; place-items: center; padding: 20px; color: var(--muted); background: linear-gradient(145deg, #f3f0e7, #faf8f2); font-size: .78rem; }
-.product-card:hover .product-card-image img { transform: scale(1.025); }
+.product-card:hover .product-card-image img { transform: scale(.99); }
 .discount-badge, .stock-overlay { position: absolute; left: 12px; top: 12px; padding: 5px 8px; border-radius: 7px; background: white; color: var(--green-900); font-size: .7rem; font-weight: 800; }
 .product-verification-badge { position: absolute; z-index: 2; left: 12px; bottom: 12px; width: fit-content; display: inline-flex; align-items: center; gap: 7px; padding: 7px 10px; border: 1px solid rgba(255,255,255,.76); border-radius: 11px; color: white; background: linear-gradient(135deg, rgba(20,108,61,.95), rgba(9,67,38,.95)); box-shadow: 0 8px 22px rgba(7,54,30,.24); backdrop-filter: blur(8px); }
 .product-verification-badge svg { width: 21px; height: 21px; color: #d8f5df; fill: rgba(255,255,255,.12); }
@@ -303,7 +303,7 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.12; }
 .thumbnails { display: flex; gap: 10px; margin-top: 12px; overflow-x: auto; padding-bottom: 3px; }
 .thumbnails button { flex: 0 0 76px; height: 76px; padding: 3px; overflow: hidden; border: 2px solid transparent; border-radius: 11px; background: white; }
 .thumbnails button.active { border-color: var(--green-800); }
-.thumbnails img, .thumbnails .pdp-image-placeholder { width: 100%; height: 100%; object-fit: cover; border-radius: 7px; }
+.thumbnails img, .thumbnails .pdp-image-placeholder { width: 100%; height: 100%; object-fit: contain; object-position: center; border-radius: 7px; background: #f3f0e7; }
 .thumbnails .pdp-image-placeholder span { display: none; }
 .thumbnails .pdp-image-placeholder svg { width: 22px; height: 22px; }
 .product-info { grid-area: info; min-width: 0; align-self: start; padding: 8px 4px 4px; }
@@ -422,7 +422,7 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.12; }
 .cart-group-head h2 { margin: 3px 0; font: 700 1.08rem 'DM Sans', sans-serif; }
 .cart-group-head p { margin: 0; color: var(--muted); font-size: .76rem; }
 .cart-line { display: grid; grid-template-columns: 82px 1fr auto; gap: 14px; padding: 16px 0; border-top: 1px solid #eeeae1; }
-.cart-line > img { width: 82px; height: 82px; object-fit: cover; border-radius: 11px; }
+.cart-line > img { width: 82px; height: 82px; object-fit: contain; object-position: center; border-radius: 11px; background: #f3f0e7; }
 .line-image-empty { width: 82px; height: 82px; display: grid; place-items: center; padding: 8px; border-radius: 11px; color: var(--muted); background: linear-gradient(145deg, #f3f0e7, #faf8f2); font-size: .68rem; text-align: center; }
 .cart-line-main > a { display: block; font-weight: 700; margin-bottom: 4px; }
 .cart-line-main > span { display: block; color: var(--muted); font-size: .73rem; margin-bottom: 9px; }
@@ -650,7 +650,7 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.12; }
 .vendor-order-card > header span, .vendor-order-card > header small { color: var(--muted); font-size: .7rem; }
 .vendor-order-card > header h3 { margin: 3px 0; color: var(--green-950); }
 .order-item { display: grid; grid-template-columns: 86px 1fr auto; gap: 16px; padding: 20px 22px; border-bottom: 1px solid var(--line); }
-.order-item > img { width: 86px; height: 86px; object-fit: cover; border-radius: 11px; }
+.order-item > img { width: 86px; height: 86px; object-fit: contain; object-position: center; border-radius: 11px; background: #f3f0e7; }
 .order-item-main { display: flex; flex-direction: column; align-items: start; gap: 7px; }
 .order-item-main > a { font-weight: 800; }
 .order-item-main > span { color: var(--muted); font-size: .76rem; }
@@ -1410,22 +1410,22 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.12; }
 .launch-price { max-width: 150px; color: #4a1953; font-size: .82rem !important; line-height: 1.25; }
 .product-card-image--vitamin-c-facewash img,
 .product-card-image--charcoal-facewash img,
-.product-card-image--haldi-chandan-papaya-facewash img { width: 100%; max-width: 100%; margin-left: 0; object-fit: cover; object-position: center 58%; transform: none; }
+.product-card-image--haldi-chandan-papaya-facewash img { width: 100%; max-width: 100%; margin-left: 0; object-fit: contain; object-position: center; transform: scale(.97); }
 .gallery-main--vitamin-c-facewash > img { object-position: center; }
 .gallery-main--charcoal-facewash > img { object-position: center; }
 .gallery-main--haldi-chandan-papaya-facewash > img { object-position: 91% 62%; }
 .product-card-image--detergent-liquid img,
 .gallery-main--detergent-liquid > img { object-position: center; }
 .product-card-image--gold-kesar-facewash { background: radial-gradient(circle at 50% 38%, rgba(223,181,92,.3), transparent 32%), linear-gradient(145deg, #3b0b45, #17001c 75%); }
-.product-card-image--gold-kesar-facewash img { object-fit: cover; object-position: center 58%; padding: 0; filter: none; }
+.product-card-image--gold-kesar-facewash img { object-fit: contain; object-position: center; padding: 0; filter: none; }
 .product-card-image--facewash-trio-combo,
 .product-card-image--detergent-liquid { background: linear-gradient(145deg, #3d1544, #1b031f); }
 .product-card-image--facewash-trio-combo img,
-.product-card-image--detergent-liquid img { object-fit: cover; object-position: center; }
+.product-card-image--detergent-liquid img { object-fit: contain; object-position: center; }
 .product-card:hover .product-card-image--vitamin-c-facewash img,
 .product-card:hover .product-card-image--charcoal-facewash img,
-.product-card:hover .product-card-image--haldi-chandan-papaya-facewash img { transform: scale(1.025); }
-.product-card-image--haldi-chandan-facewash img { object-position: center 58%; }
+.product-card:hover .product-card-image--haldi-chandan-papaya-facewash img { transform: scale(.99); }
+.product-card-image--haldi-chandan-facewash img { object-fit: contain; object-position: center; }
 .gallery-main--haldi-chandan-facewash > img { object-position: center; }
 .gallery-main--facewash-trio-combo > img { object-position: center 56%; }
 
