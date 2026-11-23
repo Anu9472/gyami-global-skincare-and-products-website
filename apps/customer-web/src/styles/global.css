@@ -809,6 +809,8 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.12; }
 }
 
 @media (max-width: 760px) {
+  .category-nav { justify-content: flex-start; gap: 20px; padding-inline: 14px; scroll-padding-inline: 14px; }
+  .category-nav > :last-child { margin-right: 2px; }
   .home-hero { padding-block: 0; }
   .home-hero-carousel, .home-hero-track { min-height: 500px; height: 500px; border-radius: 0; }
   .home-hero-slide { align-items: end; }
