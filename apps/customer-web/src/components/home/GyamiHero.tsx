@@ -1,197 +1,66 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
-import type { CSSProperties, PointerEvent } from 'react';
+import { useEffect, useState } from 'react';
+import { Droplets, Leaf, ShieldCheck, Sparkles } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import ritualImage from '../../assets/gyami/skincare-ritual-hero-v2.jpg';
 
-const FILM_START_TIME = 0;
-const FILM_DISPLAY_TIME = 11800;
-const FILM_CROSSFADE_TIME = 1100;
-
-type HeroFilm = {
+type Ritual = {
   name: string;
-  tabName: string;
-  ritual: string;
-  ingredients: readonly string[];
-  poster: string;
-  src?: string;
-  image?: string;
+  shortName: string;
+  eyebrow: string;
+  promise: string;
+  description: string;
+  benefits: readonly string[];
+  image: string;
+  scene: string;
+  href: string;
+  tone: string;
 };
 
-const films: readonly HeroFilm[] = [
-  {
-    name: 'Vitamin C',
-    tabName: 'Vitamin C',
-    ritual: 'Brightening botanicals',
-    ingredients: ['Orange extract', 'Vitamin C', 'Aloe vera'],
-    src: '/media/gyami-vitamin-c-landscape-4k-web.mp4',
-    poster: '/media/gyami-vitamin-c-hero-poster.jpg',
-  },
-  {
-    name: 'Charcoal',
-    tabName: 'Charcoal',
-    ritual: 'Deep-cleansing minerals',
-    ingredients: ['Activated charcoal', 'Neem', 'Aloe vera'],
-    src: '/media/gyami-charcoal-landscape-4k-web.mp4',
-    poster: '/media/gyami-charcoal-hero-poster.jpg',
-  },
-  {
-    name: 'Haldi · Chandan · Papaya',
-    tabName: 'Haldi',
-    ritual: 'Ayurvedic-inspired care',
-    ingredients: ['Turmeric', 'Sandalwood', 'Botanical extracts'],
-    src: '/media/gyami-haldi-chandan-papaya-landscape-playback-web.mp4',
-    poster: '/media/gyami-haldi-hero-poster.jpg',
-  },
-  {
-    name: 'Gold Kesar',
-    tabName: 'Gold Kesar',
-    ritual: 'Saffron radiance ritual',
-    ingredients: ['Gold kesar', 'Saffron extract', 'Botanical care'],
-    src: '/media/gyami-gold-kesar-landscape-playback-web.mp4',
-    poster: '/media/gyami-gold-kesar-hero-poster.jpg',
-  },
+const rituals: readonly Ritual[] = [
+  { name: 'Vitamin C Facewash', shortName: 'Vitamin C', eyebrow: 'Daily radiance ritual', promise: 'Fresh clarity. Naturally luminous skin.', description: 'A bright, refreshing cleanse with vitamin C, orange extract and aloe vera for a comfortable everyday ritual.', benefits: ['Bright-looking skin', 'Fresh daily cleanse', 'Aloe comfort'], image: '/media/gyami-vitamin-c-card.png', scene: '/media/gyami-vitamin-c-card.png', href: '/products/vitamin-c-facewash', tone: 'citrus' },
+  { name: 'Charcoal Facewash', shortName: 'Charcoal', eyebrow: 'Deep-cleansing ritual', promise: 'A clean reset for busy, urban skin.', description: 'Activated charcoal, neem and aloe vera come together in a balanced cleanse designed for everyday freshness.', benefits: ['Deep cleanse', 'Oil-control care', 'Fresh finish'], image: '/media/gyami-charcoal-card.png', scene: '/media/gyami-charcoal-card.png', href: '/products/charcoal-facewash', tone: 'charcoal' },
+  { name: 'Haldi Chandan Papaya Facewash', shortName: 'Haldi · Chandan', eyebrow: 'Ayurvedic-inspired ritual', promise: 'Tradition, refined for a modern glow.', description: 'Turmeric, sandalwood and papaya-inspired care create a gentle cleansing ritual rooted in familiar botanicals.', benefits: ['Radiance care', 'Smooth-feeling skin', 'Botanical cleanse'], image: '/media/gyami-haldi-card.png', scene: '/media/gyami-haldi-card.png', href: '/products/haldi-chandan-facewash', tone: 'haldi' },
+  { name: 'Gold Kesar Facewash', shortName: 'Gold Kesar', eyebrow: 'Saffron radiance ritual', promise: 'A refined cleanse with a golden touch.', description: 'A premium saffron-inspired daily cleanser presented in GYAMI’s signature royal-purple and champagne-gold design.', benefits: ['Saffron-inspired care', 'Daily radiance', 'Premium ritual'], image: '/media/gyami-gold-kesar-card.png', scene: '/media/gyami-gold-kesar-card.png', href: '/products/gold-kesar-facewash', tone: 'kesar' },
 ];
 
+const lifestyle = {
+  name: 'The GYAMI cleansing ritual', shortName: 'The ritual', eyebrow: 'Modern skincare ritual',
+  promise: 'Cleanse beautifully. Reveal your natural glow.',
+  description: 'Begin with a refreshing everyday cleanse, then discover the GYAMI facewash created for your skin ritual.',
+  benefits: ['Fresh-feeling skin', 'Mindful daily care', 'Four targeted rituals'] as const,
+  scene: ritualImage, href: '#collection', tone: 'lifestyle',
+};
+
 export function GyamiHero() {
-  const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const [mediaStarted] = useState(true);
-  const videos = useRef<Array<HTMLVideoElement | null>>([]);
-  const changing = useRef(false);
-
-  const moveLight = (event: PointerEvent<HTMLElement>) => {
-    const bounds = event.currentTarget.getBoundingClientRect();
-    const x = ((event.clientX - bounds.left) / bounds.width - 0.5) * 2;
-    const y = ((event.clientY - bounds.top) / bounds.height - 0.5) * 2;
-    event.currentTarget.style.setProperty('--pointer-x', x.toFixed(3));
-    event.currentTarget.style.setProperty('--pointer-y', y.toFixed(3));
-  };
+  const [activeSlide, setActiveSlide] = useState(0);
+  const totalSlides = rituals.length + 1;
+  const isLifestyle = activeSlide === 0;
+  const ritual = rituals[Math.max(0, activeSlide - 1)] ?? rituals[0]!;
+  const slide = isLifestyle ? lifestyle : ritual;
 
   useEffect(() => {
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduceMotion) setPaused(true);
-  }, []);
-
-  useEffect(() => {
-    const video = videos.current[active];
-    if (!video || !mediaStarted) return undefined;
-    if (paused) video.pause();
-    else {
-      if (video.currentTime < FILM_START_TIME || video.currentTime > 12.2) video.currentTime = FILM_START_TIME;
-      void video.play().catch(() => setPaused(true));
-    }
-  }, [active, mediaStarted, paused]);
-
-  const transitionTo = useCallback((index: number) => {
-    if (index === active || changing.current) return;
-    changing.current = true;
-    const next = videos.current[index];
-    const previous = videos.current[active];
-    if (!films[index]?.src) {
-      changing.current = true;
-      setActive(index);
-      previous?.pause();
-      window.setTimeout(() => { changing.current = false; }, 950);
-      return;
-    }
-    if (!next) {
-      changing.current = false;
-      return;
-    }
-    next.preload = 'auto';
-    if (next.readyState < HTMLMediaElement.HAVE_FUTURE_DATA) next.load();
-    next.currentTime = FILM_START_TIME;
-    let revealed = false;
-    const reveal = () => {
-      if (revealed) return;
-      revealed = true;
-      setActive(index);
-      window.setTimeout(() => {
-        previous?.pause();
-        changing.current = false;
-      }, FILM_CROSSFADE_TIME);
-    };
-    if (paused) reveal();
-    else void next.play().then(() => {
-      const requestDecodedFrame = (next as HTMLVideoElement & {
-        requestVideoFrameCallback?: (callback: () => void) => number;
-      }).requestVideoFrameCallback;
-      if (typeof requestDecodedFrame === 'function') {
-        requestDecodedFrame.call(next, () => reveal());
-      } else {
-        const revealWhenReady = () => window.requestAnimationFrame(reveal);
-        if (next.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) revealWhenReady();
-        else next.addEventListener('loadeddata', revealWhenReady, { once: true });
-      }
-    }).catch(() => {
-      changing.current = false;
-      setPaused(true);
-    });
-  }, [active, paused]);
-
-  useEffect(() => {
-    if (paused || !mediaStarted) return undefined;
-    const slider = window.setTimeout(() => transitionTo((active + 1) % films.length), FILM_DISPLAY_TIME);
-    return () => window.clearTimeout(slider);
-  }, [active, mediaStarted, paused, transitionTo]);
-
-  const activeFilm = films[active] ?? films[0]!;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const timer = window.setInterval(() => setActiveSlide((current) => (current + 1) % totalSlides), 1000);
+    return () => window.clearInterval(timer);
+  }, [totalSlides]);
 
   return (
-    <section className="gyami-hero" aria-labelledby="gyami-hero-title" onPointerMove={moveLight}>
-      <div className="gyami-hero-film" aria-hidden="true">
-        {films.map((film, index) => film.src ? (
-          <video
-            ref={(node) => { videos.current[index] = node; }}
-            className={index === active ? 'is-active' : ''}
-            style={{ '--film-rotation': `${index % 2 === 0 ? -0.7 : 0.7}deg` } as CSSProperties}
-            key={film.src}
-            muted
-            onLoadedMetadata={(event) => { event.currentTarget.currentTime = FILM_START_TIME; }}
-            playsInline
-            poster={film.poster}
-            preload={index < 2 ? 'auto' : 'metadata'}
-          >
-            <source src={film.src} type="video/mp4" />
-          </video>
-        ) : (
-          <img
-            alt=""
-            aria-hidden="true"
-            className={`gyami-hero-product-still${index === active ? ' is-active' : ''}`}
-            key={film.name}
-            src={film.image}
-          />
-        ))}
-        <div className="gyami-hero-film__veil" />
-        <div className="gyami-hero-film__aurora" />
-        <div className="gyami-hero-film__grain" />
-      </div>
-      <div className="gyami-hero-product-name" aria-live="polite"><span>Featured ritual</span><strong>{activeFilm.name}</strong></div>
-
-      <div className="gyami-hero-orbit" aria-hidden="true"><i /><i /><i /></div>
-      <div className="gyami-hero-aurora-ribbons" aria-hidden="true"><i /><i /><i /></div>
-      <div className="gyami-hero-light" aria-hidden="true" />
-      <div className="gyami-hero-dust" aria-hidden="true"><i /><i /><i /><i /><i /><i /></div>
-      <div className="shell gyami-hero-grid">
-        <div className="gyami-hero-copy">
-          <p className="gyami-kicker gyami-hero-enter gyami-hero-enter--1">Premium skincare &amp; beauty</p>
-          <h1 className="gyami-hero-enter gyami-hero-enter--2" id="gyami-hero-title">Where science<br />meets <em>luxury.</em></h1>
-          <p className="gyami-hero-lede gyami-hero-enter gyami-hero-enter--3">Modern cosmetic science, refined aesthetics, and the timeless art of personal care—created in India with a global vision.</p>
-          <div className="gyami-ingredient-story gyami-hero-enter gyami-hero-enter--4" aria-live="polite">
-            <p>{activeFilm.ritual}</p>
-            <div>{activeFilm.ingredients.map((ingredient) => <span key={ingredient}><i aria-hidden="true" />{ingredient}</span>)}</div>
-          </div>
-          <div className="gyami-hero-actions gyami-hero-enter gyami-hero-enter--4">
-            <a className="button gyami-button--gold" href="#collection">Discover the collection</a>
-            <a className="gyami-text-link" href="#our-philosophy">Our philosophy</a>
-          </div>
-        </div>
-
-        <div className="gyami-hero-dots" role="tablist" aria-label="Choose a product film">
-          {films.map((film, index) => <button aria-label={`Show ${film.name} film`} aria-selected={active === index} className={active === index ? 'is-active' : ''} key={film.name} onClick={() => transitionTo(index)} role="tab"><i /><span>{film.tabName}</span></button>)}
+    <section className={`ritual-hero ritual-hero--${slide.tone} ${isLifestyle ? 'ritual-hero--lifestyle-slide' : 'ritual-hero--product-slide'}`} aria-labelledby="ritual-hero-title">
+      <div className="ritual-hero__photography" aria-hidden="true">{isLifestyle && <img src={slide.scene} alt="" fetchPriority="high" decoding="async" />}<div className="ritual-hero__photo-wash" /><div className="ritual-hero__botanicals"><span /><span /><span /></div></div>
+      {!isLifestyle && <div className="ritual-hero__featured-product" aria-live="polite"><span className="ritual-hero__featured-glow" aria-hidden="true" /><img src={ritual.image} alt={ritual.name} decoding="async" /><span className="ritual-hero__featured-label"><small>Featured ritual</small><strong>{ritual.shortName}</strong></span></div>}
+      <div className="shell ritual-hero__layout">
+        <div className="ritual-hero__copy" key={activeSlide}>
+          <p className="ritual-hero__edition"><span>GYAMI skincare</span><i />Made for your daily ritual</p>
+          <p className="ritual-hero__eyebrow">{slide.eyebrow}</p>
+          <h1 id="ritual-hero-title">{slide.promise}</h1>
+          <p className="ritual-hero__description">{slide.description}</p>
+          <ul className="ritual-hero__benefits" aria-label={`${slide.name} benefits`}>
+            <li><Sparkles aria-hidden="true" />{slide.benefits[0]}</li><li><Droplets aria-hidden="true" />{slide.benefits[1]}</li><li><Leaf aria-hidden="true" />{slide.benefits[2]}</li>
+          </ul>
+          <div className="ritual-hero__actions">{isLifestyle ? <a className="button ritual-hero__primary" href="#collection">Discover the collection</a> : <Link className="button ritual-hero__primary" to={ritual.href}>Explore {ritual.shortName}</Link>}<a className="ritual-hero__secondary" href="#collection">Shop all rituals</a></div>
+          <p className="ritual-hero__assurance"><ShieldCheck aria-hidden="true" /> Official GYAMI Global product</p>
         </div>
       </div>
-
-      <a className="gyami-scroll-cue" href="#collection"><span>Explore</span><i aria-hidden="true" /></a>
     </section>
   );
 }

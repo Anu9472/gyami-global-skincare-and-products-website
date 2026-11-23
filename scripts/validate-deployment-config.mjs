@@ -78,7 +78,7 @@ assert.match(
 );
 assert.match(
   renderBlueprint,
-  /npm run prisma:bootstrap-production --workspace @gyami_global\/api/,
+  /npm run prisma:bootstrap-production --workspace @gyami-global\/api/,
   "Render must provision the configured initial administrator before serving traffic",
 );
 assert.match(
