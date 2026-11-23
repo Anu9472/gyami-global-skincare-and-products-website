@@ -11,12 +11,7 @@ const apiBaseUrl =
     ? configuredApiUrl
     : '/api/v1';
 
-if (import.meta.env.PROD && configuredApiMode === 'mock') {
-  throw new Error(
-    'Production storefront requires VITE_API_MODE=http; mock marketplace data is disabled.',
-  );
-}
-if (import.meta.env.PROD && !configuredApiUrl) {
+if (import.meta.env.PROD && apiMode === 'http' && !configuredApiUrl) {
   throw new Error(
     'Production storefront requires VITE_API_URL to point to the marketplace API.',
   );
