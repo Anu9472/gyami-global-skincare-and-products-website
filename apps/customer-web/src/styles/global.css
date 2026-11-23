@@ -900,7 +900,33 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.12; }
   .account-grid, .address-grid { grid-template-columns: 1fr; }
   .address-form { grid-template-columns: 1fr; }
   .form-span { grid-column: auto; }
-  .checkout-steps { overflow-x: auto; justify-content: start; padding-bottom: 8px; }
+  .checkout-page { padding-top: 24px; padding-bottom: 48px; }
+  .checkout-page::before { top: -12px; height: 260px; }
+  .checkout-steps { width: 100%; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-bottom: 24px; padding: 10px; overflow: visible; border-radius: 18px; }
+  .checkout-steps > svg { display: none; }
+  .checkout-steps span { min-width: 0; justify-content: center; padding: 8px 6px; border-radius: 10px; background: rgba(255,255,255,.72); text-align: center; white-space: normal; }
+  .checkout-steps .active { color: white; background: linear-gradient(135deg,#42054d,#721f7d); }
+  .checkout-page > .page-heading { margin-bottom: 22px; }
+  .checkout-page > .page-heading h1 { margin-top: 5px; font-size: clamp(2.35rem, 12vw, 3.15rem); line-height: 1; }
+  .checkout-page > .page-heading p { font-size: .9rem; line-height: 1.5; }
+  .checkout-layout { gap: 4px; }
+  .checkout-card, .checkout-summary { border-radius: 17px; }
+  .checkout-card { padding: 18px 16px; }
+  .card-title { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 10px; margin-bottom: 14px; }
+  .card-title > svg { width: 26px; height: 26px; }
+  .card-title > a, .card-title > .status-badge { grid-column: 2; width: fit-content; margin-left: 0; }
+  .card-title p { line-height: 1.45; }
+  .checkout-addresses label, .payment-choice { gap: 10px; padding: 13px 12px; }
+  .checkout-addresses input, .payment-choice input { flex: 0 0 auto; margin-top: 3px; }
+  .checkout-addresses span, .payment-choice span { min-width: 0; }
+  .checkout-addresses strong, .checkout-addresses small, .payment-choice strong, .payment-choice small { overflow-wrap: anywhere; }
+  .checkout-vendor { gap: 12px; }
+  .checkout-vendor > span { flex: 0 0 auto; }
+  .checkout-summary { margin-bottom: 0; padding: 20px 16px; }
+  .checkout-summary::before { margin: -20px -16px 19px; padding: 11px 16px; }
+  .checkout-summary .button { min-height: 50px; }
+  .payment-recovery .form-actions { display: grid; grid-template-columns: 1fr; }
+  .payment-recovery .form-actions .button { width: 100%; }
   .confirmation-summary { grid-template-columns: 1fr; }
   .confirmation-summary > div { border-right: 0; border-bottom: 1px solid var(--line); }
   .confirmation-summary > div:last-child { border-bottom: 0; }
