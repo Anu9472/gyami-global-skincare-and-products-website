@@ -1100,6 +1100,7 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.12; }
 .ritual-hero--product-slide .ritual-hero__featured-product { right: clamp(5%,8vw,11%); bottom: 38px; width: clamp(300px,26vw,470px); height: min(65vh,610px); overflow: hidden; border: 1px solid rgba(249,223,157,.46); border-radius: 32px; background: rgba(31,3,36,.6); box-shadow: 0 34px 90px rgba(18,0,23,.42), 0 0 0 1px rgba(255,255,255,.1) inset; backdrop-filter: blur(14px); }
 .ritual-hero--product-slide .ritual-hero__featured-product::before { content: ""; position: absolute; inset: 12px; z-index: 1; border: 1px solid rgba(245,213,135,.22); border-radius: 23px; pointer-events: none; }
 .ritual-hero--product-slide .ritual-hero__featured-product > img { width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: center; filter: saturate(1.03) contrast(1.02); }
+.ritual-hero--product-slide .ritual-hero__featured-product--citrus > img { object-position: center 42%; }
 .ritual-hero--product-slide .ritual-hero__featured-glow { right: -10%; bottom: -10%; left: -10%; height: 48%; background: radial-gradient(circle,rgba(235,190,91,.38),rgba(111,32,122,.16) 48%,transparent 72%); }
 .ritual-hero--product-slide .ritual-hero__featured-label { right: 18px; bottom: 18px; min-width: 145px; }
 .ritual-hero--product-slide .ritual-hero__featured-glow { background: radial-gradient(circle,rgba(255,226,148,.68),rgba(126,43,137,.3) 48%,transparent 70%); }

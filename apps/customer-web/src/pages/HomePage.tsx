@@ -1,7 +1,6 @@
 import { ArrowRight, Check, Droplets, FlaskConical, Gem, ShieldCheck, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import brandBanner from '../assets/gyami/brand-banner.jpeg';
-import logoImage from '../assets/gyami/gyami-logo-small.jpeg';
 import { GyamiHero } from '../components/home/GyamiHero';
 import { ScrollReveal } from '../components/home/ScrollReveal';
 
@@ -20,24 +19,6 @@ export function HomePage() {
       <GyamiHero />
 
       <div className="gyami-brand-ribbon" aria-label="GYAMI brand principles"><div><span>Modern cosmetic science</span><i /> <span>Refined aesthetics</span><i /> <span>Thoughtful beauty</span><i /> <span>Luxury in every touch</span><i /> <span aria-hidden="true">Modern cosmetic science</span><i aria-hidden="true" /> <span aria-hidden="true">Refined aesthetics</span></div></div>
-
-      <ScrollReveal><section className="gyami-intro" aria-labelledby="gyami-intro-title">
-        <div className="gyami-intro-glow" aria-hidden="true" />
-        <div className="shell gyami-intro-grid">
-          <div className="gyami-intro-index"><span>01</span><p>The house of GYAMI</p></div>
-          <div className="gyami-intro-copy">
-            <p className="gyami-intro-eyebrow">An Indian beauty house · A global point of view</p>
-            <h2 id="gyami-intro-title">Beauty is more than appearance.<br />It is a <em>daily ritual.</em></h2>
-            <div className="gyami-intro-rule" aria-hidden="true"><span /></div>
-            <p>GYAMI® brings together modern cosmetic science, refined aesthetics, and the timeless art of personal care. Every detail is considered to make everyday care feel extraordinary.</p>
-            <div className="gyami-intro-motto" aria-label="Luxury in every touch"><span>Luxury in</span><em>every touch</em></div>
-            <div className="gyami-intro-values" aria-label="GYAMI values"><span>Modern science</span><i /><span>Refined aesthetics</span><i /><span>Timeless care</span></div>
-          </div>
-          <div className="gyami-intro-signature">
-            <div className="gyami-intro-mark"><span aria-hidden="true" /><img src={logoImage} alt="GYAMI Global emblem" loading="lazy" decoding="async" /></div>
-          </div>
-        </div>
-      </section></ScrollReveal>
 
       <ScrollReveal className="home-reveal--cards"><section className="gyami-collection" id="collection" aria-labelledby="collection-title"><div className="shell">
         <div className="gyami-section-heading"><div><p className="gyami-kicker">The opening collection</p><h2 id="collection-title">Nature-led rituals.<br />Care, refined.</h2></div><p>Vitamin C and orange, charcoal and neem, turmeric and sandalwood, plus the new Gold Kesar ritual—unified by the unmistakable GYAMI signature.</p></div>
