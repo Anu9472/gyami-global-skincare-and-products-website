@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Droplets, Leaf, ShieldCheck, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import ritualImage from '../../assets/gyami/skincare-ritual-hero-v2.jpg';
 
 type Ritual = {
   name: string;
@@ -23,11 +24,16 @@ const rituals: readonly Ritual[] = [
 ];
 
 const heroCopy = rituals[1]!;
+const visualSlides = [
+  { name: 'The GYAMI cleansing ritual', shortName: 'The ritual', image: ritualImage, tone: 'lifestyle' },
+  ...rituals,
+] as const;
 
 export function GyamiHero() {
   const [activeSlide, setActiveSlide] = useState(0);
-  const totalSlides = rituals.length;
-  const ritual = rituals[activeSlide] ?? rituals[0]!;
+  const totalSlides = visualSlides.length;
+  const visual = visualSlides[activeSlide] ?? visualSlides[0]!;
+  const isLifestyle = visual.tone === 'lifestyle';
 
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -36,9 +42,9 @@ export function GyamiHero() {
   }, [totalSlides]);
 
   return (
-    <section className={`ritual-hero ritual-hero--${ritual.tone} ritual-hero--product-slide`} aria-labelledby="ritual-hero-title">
-      <div className="ritual-hero__photography" aria-hidden="true"><div className="ritual-hero__photo-wash" /><div className="ritual-hero__botanicals"><span /><span /><span /></div></div>
-      <div className={`ritual-hero__featured-product ritual-hero__featured-product--${ritual.tone}`} aria-live="polite"><span className="ritual-hero__featured-glow" aria-hidden="true" /><img key={ritual.image} src={ritual.image} alt={ritual.name} decoding="async" /><span className="ritual-hero__featured-label"><small>Featured ritual</small><strong>{ritual.shortName}</strong></span></div>
+    <section className={`ritual-hero ritual-hero--${visual.tone} ${isLifestyle ? 'ritual-hero--lifestyle-slide' : 'ritual-hero--product-slide'}`} aria-labelledby="ritual-hero-title">
+      <div className="ritual-hero__photography" aria-hidden="true">{isLifestyle && <img key={visual.image} src={visual.image} alt="" fetchPriority="high" decoding="async" />}<div className="ritual-hero__photo-wash" /><div className="ritual-hero__botanicals"><span /><span /><span /></div></div>
+      {!isLifestyle && <div className={`ritual-hero__featured-product ritual-hero__featured-product--${visual.tone}`} aria-live="polite"><span className="ritual-hero__featured-glow" aria-hidden="true" /><img key={visual.image} src={visual.image} alt={visual.name} decoding="async" /><span className="ritual-hero__featured-label"><small>Featured ritual</small><strong>{visual.shortName}</strong></span></div>}
       <div className="shell ritual-hero__layout">
         <div className="ritual-hero__copy">
           <p className="ritual-hero__edition"><span>GYAMI skincare</span><i />Made for your daily ritual</p>
