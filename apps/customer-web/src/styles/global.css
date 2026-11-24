@@ -1677,7 +1677,12 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.12; }
     border-radius: 18px;
   }
   .ritual-hero--product-slide .ritual-hero__featured-product > img {
-    object-position: center 44%;
+    width: 100%;
+    height: 100%;
+    padding: 8px;
+    object-fit: contain;
+    object-position: center;
+    background: #210027;
   }
   .ritual-hero--product-slide .ritual-hero__featured-label {
     display: grid;
