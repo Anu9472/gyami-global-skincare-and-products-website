@@ -1666,9 +1666,9 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.12; }
   }
   .ritual-hero--product-slide .ritual-hero__featured-product {
     display: block;
-    inset: 142px 12px 28px auto;
-    width: calc(43% - 12px);
-    height: auto;
+    inset: auto 12px 16px;
+    width: auto;
+    height: 270px;
     border-radius: 24px;
     box-shadow: 0 22px 56px rgba(17, 0, 21, .34);
   }
@@ -1679,47 +1679,17 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.12; }
   .ritual-hero--product-slide .ritual-hero__featured-product > img {
     width: 100%;
     height: 100%;
-    padding: 0;
-    object-fit: cover;
+    padding: 8px;
+    object-fit: contain;
     object-position: center;
     background: #210027;
   }
   .ritual-hero--product-slide .ritual-hero__featured-label {
     display: grid;
-    right: 8px;
+    right: 12px;
     bottom: 12px;
-    left: 8px;
-    min-width: 0;
-    padding: 8px 9px;
-  }
-  .ritual-hero--product-slide .ritual-hero__layout {
-    padding-right: calc(43% + 10px);
-    padding-bottom: 34px;
-  }
-  .ritual-hero--product-slide .ritual-hero__copy {
-    padding: 14px;
-  }
-  .ritual-hero--product-slide .ritual-hero__edition {
-    margin-bottom: 12px;
-  }
-  .ritual-hero--product-slide .ritual-hero__copy h1 {
-    font-size: clamp(1.85rem, 8.5vw, 2.45rem);
-  }
-  .ritual-hero--product-slide .ritual-hero__benefits {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-  .ritual-hero--product-slide .ritual-hero__actions {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 10px;
-  }
-  .ritual-hero--product-slide .ritual-hero__primary {
-    min-width: 0;
-    width: 100%;
-  }
-  .ritual-hero--product-slide .ritual-hero__secondary {
-    display: none;
+    min-width: 124px;
+    padding: 9px 12px;
   }
 }
 
@@ -1729,13 +1699,7 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.12; }
   .ritual-hero__copy { padding: 15px; border-radius: 19px; }
   .ritual-hero__copy h1 { font-size: clamp(2.05rem, 10.5vw, 2.55rem); }
   .ritual-hero__benefits li { padding-inline: 8px; }
-  .ritual-hero--product-slide .ritual-hero__layout {
-    padding-right: calc(43% + 10px);
-    padding-bottom: 34px;
-  }
-  .ritual-hero--product-slide .ritual-hero__copy { padding: 13px; }
-  .ritual-hero--product-slide .ritual-hero__copy h1 { font-size: clamp(1.72rem, 8.2vw, 2.15rem); }
-  .ritual-hero--product-slide .ritual-hero__featured-product { height: auto; }
+  .ritual-hero--product-slide .ritual-hero__featured-product { height: 250px; }
 }
 
 /* Compact navigation: switch before the desktop actions can overflow. */
