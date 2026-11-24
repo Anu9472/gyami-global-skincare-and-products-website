@@ -1717,6 +1717,7 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.12; }
     width: min(64%, 250px);
     margin: 0 auto 0 14px;
     padding: 16px;
+    transform: translateY(34px);
   }
   .ritual-hero--lifestyle-slide .ritual-hero__edition {
     margin-bottom: 12px;
