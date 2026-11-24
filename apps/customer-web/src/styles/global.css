@@ -1499,15 +1499,16 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.12; }
 }
 
 @media (max-width: 760px) {
-  .site-header .header-main { position: relative; justify-content: flex-start; }
+  .site-header .header-main { position: relative; justify-content: space-between; }
   .site-header .mobile-menu { order: 2; margin-left: auto; border-radius: 14px; box-shadow: 0 10px 30px rgba(18,0,22,.14); }
-  .site-header .header-main > .gyami-brand { position: absolute; z-index: 2; left: 50%; min-width: 0; gap: 8px; transform: translateX(-50%); white-space: nowrap; }
+  .site-header .header-main > .gyami-brand { position: relative; z-index: 2; order: 1; left: auto; min-width: 0; max-width: calc(100% - 60px); gap: 8px; margin-right: auto; transform: none; white-space: nowrap; }
   .site-header .header-main > .gyami-brand small { display: none; }
   .site-header .header-main > .gyami-brand strong { font-family: 'DM Sans', system-ui, sans-serif; font-size: .84rem; font-weight: 800; letter-spacing: .055em; }
   .site-header--home .header-main > .gyami-brand > img { box-shadow: 0 0 0 4px rgba(231,194,107,.08), 0 8px 26px rgba(0,0,0,.2); }
   .gyami-brand { min-width: 0; }
   .gyami-brand > img { width: 42px; height: 42px; flex-basis: 42px; }
   .gyami-brand strong { font-size: .84rem; }
+  .site-header .header-search { order: 3; }
   .gyami-hero { min-height: 780px; }
   .gyami-hero-film { inset: 124px 10px 82px; border-radius: 28px; }
   .gyami-hero-film video { inset: 0; width: 100%; height: 100%; object-position: center; transform: none; }
