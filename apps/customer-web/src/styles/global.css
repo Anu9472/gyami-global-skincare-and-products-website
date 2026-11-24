@@ -1703,6 +1703,26 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.12; }
   .ritual-hero--product-slide .ritual-hero__featured-product { height: 250px; }
 }
 
+/* Give the lifestyle story card the full marked mobile width. */
+@media (max-width: 760px) {
+  .ritual-hero--lifestyle-slide .ritual-hero__copy {
+    width: calc(100vw - 32px);
+    max-width: none;
+    margin-inline: calc((100vw - 100%) / -2 + 16px);
+  }
+  .ritual-hero--lifestyle-slide .ritual-hero__benefits,
+  .ritual-hero--lifestyle-slide .ritual-hero__actions {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .ritual-hero--lifestyle-slide .ritual-hero__primary {
+    width: 100%;
+  }
+  .ritual-hero--lifestyle-slide .ritual-hero__secondary {
+    display: none;
+  }
+}
+
 /* Compact navigation: switch before the desktop actions can overflow. */
 @media (max-width: 1100px) {
   .site-header .header-main { position: relative; }
