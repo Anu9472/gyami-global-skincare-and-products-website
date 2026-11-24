@@ -94,7 +94,7 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.12; }
 .category-nav a { position: relative; white-space: nowrap; transition: color .18s ease; }
 .category-nav a::after { content: ''; position: absolute; right: 50%; bottom: -11px; left: 50%; height: 2px; border-radius: 2px; background: linear-gradient(90deg, var(--gold), #f0d28e); transition: right .2s ease, left .2s ease; }
 .category-nav a:hover::after, .category-nav a.active::after { right: 0; left: 0; }
-.category-nav > * { scroll-snap-align: start; }
+.category-nav > * { flex: 0 0 auto; scroll-snap-align: start; }
 .category-nav a.active { color: var(--green-800); }
 .category-nav-more-wrap { position: relative; flex: 0 0 auto; }
 .category-nav-more { display: inline-flex; align-items: center; gap: 3px; border: 0; padding: 0; color: var(--muted); background: transparent; font: inherit; font-weight: inherit; cursor: pointer; white-space: nowrap; }
@@ -761,7 +761,7 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.12; }
 .footer-grid p, .footer-grid > div:not(:first-child) > a, .footer-grid > div:not(:first-child) > span { display: flex; align-items: center; gap: 7px; color: #aec2b3; font-size: .78rem; line-height: 1.6; }
 .footer-bottom { display: flex; justify-content: space-between; margin-top: 50px; padding-block: 18px; border-top: 1px solid rgba(255,255,255,.13); color: #93a999; font-size: .72rem; }
 
-@media (max-width: 980px) {
+@media (max-width: 1100px) {
   .site-header--home .header-main { min-height: 70px; flex-wrap: nowrap; }
   .site-header--home .header-search { display: none; }
   .site-header--home .mobile-menu { border-color: rgba(239,211,148,.3); color: #f8e4b5; background: rgba(255,255,255,.07); }
@@ -996,7 +996,7 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.12; }
 /* Editorial skincare ritual hero */
 .ritual-hero { --ritual-accent: #c77d2b; position: relative; min-height: min(900px, calc(100svh - 44px)); overflow: hidden; color: #2a1230; background: #f7f0e7; isolation: isolate; transition: background .45s ease; }
 .ritual-hero--charcoal { --ritual-accent: #51365b; }.ritual-hero--haldi { --ritual-accent: #d28421; }.ritual-hero--kesar { --ritual-accent: #a56824; }
-.ritual-hero__photography { position: absolute; z-index: -2; inset: 0; }
+.ritual-hero__photography { position: absolute; z-index: -2; inset: 0; overflow: hidden; }
 .ritual-hero__photography img { width: 100%; height: 100%; object-fit: cover; object-position: center; filter: saturate(.86) contrast(.98); }
 .ritual-hero__photo-wash { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(250,246,239,.99) 0%, rgba(250,246,239,.97) 27%, rgba(250,246,239,.72) 48%, rgba(250,246,239,.08) 71%), linear-gradient(180deg, rgba(255,255,255,.24), transparent 44%, rgba(38,9,43,.14)); }
 .ritual-hero::after { content: ""; position: absolute; z-index: -1; inset: auto 0 0; height: 190px; background: linear-gradient(180deg, transparent, rgba(30,4,34,.22)); pointer-events: none; }
@@ -1697,8 +1697,8 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.12; }
   .ritual-hero--product-slide .ritual-hero__featured-product { height: 250px; }
 }
 
-/* Compact mobile navigation: keep the menu clear of the hero and easy to scan. */
-@media (max-width: 980px) {
+/* Compact navigation: switch before the desktop actions can overflow. */
+@media (max-width: 1100px) {
   .site-header .header-main { position: relative; }
   .site-header .mobile-menu {
     position: relative;
@@ -1762,6 +1762,16 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.12; }
 @media (max-width: 640px) {
   .site-header .header-actions,
   .site-header--home .header-actions { right: 0; top: calc(100% + 8px); }
+}
+
+@media (max-width: 480px) {
+  .category-nav {
+    gap: 13px;
+    padding-inline: 12px;
+    scroll-padding-inline: 12px;
+    font-size: .68rem;
+    letter-spacing: .02em;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -32,7 +32,7 @@ const visualSlides = [
 export function GyamiHero() {
   const [activeSlide, setActiveSlide] = useState(0);
   const totalSlides = visualSlides.length;
-  const visual = visualSlides[activeSlide] ?? visualSlides[0]!;
+  const visual = visualSlides[activeSlide] ?? visualSlides[0];
   const isLifestyle = visual.tone === 'lifestyle';
 
   useEffect(() => {

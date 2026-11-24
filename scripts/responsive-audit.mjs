@@ -67,7 +67,7 @@ const panels = [
   {
     name: "customer",
     base: customerBase,
-    sessionKey: "gyami_global.customer.session",
+    sessionKey: "gyami.customer.session",
     session: {
       accessToken: "responsive-customer-access",
       refreshToken: "responsive-customer-refresh",
@@ -100,7 +100,7 @@ const panels = [
   {
     name: "admin",
     base: adminBase,
-    sessionKey: "gyami_global.admin.session",
+    sessionKey: "gyami.admin.session",
     role: "ADMIN",
     routes: [
       "/login",
@@ -131,7 +131,7 @@ const panels = [
   {
     name: "vendor",
     base: vendorBase,
-    sessionKey: "gyami_global.vendor.session",
+    sessionKey: "gyami.vendor.session",
     role: "VENDOR",
     routes: [
       "/login",
@@ -155,7 +155,13 @@ const panels = [
     ],
   },
 ];
-const widths = [320, 375, 390, 430, 768, 820, 1024, 1280, 1440, 1920];
+const selectedPanels = argumentsMap.panel
+  ? panels.filter((panel) => panel.name === argumentsMap.panel)
+  : panels;
+if (!selectedPanels.length) throw new Error(`Unknown responsive audit panel: ${argumentsMap.panel}`);
+const widths = argumentsMap.widths
+  ? argumentsMap.widths.split(",").map(Number).filter(Number.isFinite)
+  : [320, 375, 390, 430, 768, 820, 1024, 1280, 1440, 1920];
 const viewports = [
   ...widths.map((width) => ({ width, height: width < 768 ? 844 : 900 })),
   { width: 844, height: 390 },
@@ -322,7 +328,7 @@ try {
   }
   if (!version) throw new Error("Chrome DevTools did not start.");
   const failures = [];
-  for (const panel of panels) {
+  for (const panel of selectedPanels) {
     const target = await fetch(`http://127.0.0.1:${port}/json/new?about:blank`, { method: "PUT" }).then((response) => response.json());
     const cdp = new Cdp(target.webSocketDebuggerUrl);
     await cdp.open();
@@ -387,7 +393,14 @@ try {
               viewport: innerWidth,
               documentWidth: document.documentElement.scrollWidth,
               overflow: document.documentElement.scrollWidth > innerWidth + 1,
+              overflowElements: document.documentElement.scrollWidth > innerWidth + 1
+                ? Array.from(document.querySelectorAll('body *')).map((element) => {
+                    const rect = element.getBoundingClientRect();
+                    return { tag: element.tagName, className: typeof element.className === 'string' ? element.className : '', left: rect.left, right: rect.right };
+                  }).filter((element) => element.left < -1 || element.right > innerWidth + 1).slice(0, 12)
+                : [],
               heading: document.querySelector('h1,h2')?.textContent?.trim() ?? '',
+              rendered: (document.querySelector('#root')?.children.length ?? 0) > 0,
               viewportMetaOkay: document.querySelector('meta[name="viewport"]')?.content.includes('width=device-width') ?? false,
               runtimeError: document.body.textContent?.includes('This page could not be displayed') ?? false,
               navigationOkay
@@ -405,7 +418,7 @@ try {
             break;
           }
           const candidate = result.result?.value;
-          if (candidate && candidate.href === expectedUrl && candidate.heading && candidate.viewport === width) {
+          if (candidate && candidate.href === expectedUrl && candidate.rendered && candidate.viewport === width) {
             audit = candidate;
             // Vite can paint the routed markup just before the linked stylesheet
             // finishes applying. Keep sampling until the layout is stable so a
@@ -436,7 +449,7 @@ try {
     console.error(JSON.stringify(failures, null, 2));
     process.exitCode = 1;
   } else {
-    console.log(`Responsive audit passed: ${panels.reduce((sum, panel) => sum + panel.routes.length, 0)} routes × ${viewports.length} viewports.`);
+    console.log(`Responsive audit passed: ${selectedPanels.reduce((sum, panel) => sum + panel.routes.length, 0)} routes × ${viewports.length} viewports.`);
   }
 } finally {
   chrome.kill();

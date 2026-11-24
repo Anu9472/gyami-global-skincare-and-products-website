@@ -20,7 +20,7 @@ export function ProductCard({ product }: { product: Product }) {
   const add = async () => {
     const returnTo = `${location.pathname}${location.search}`;
     if (!isAuthenticated) {
-      navigate('/login', { state: { from: returnTo } });
+      await navigate('/login', { state: { from: returnTo } });
       return;
     }
     try {
@@ -28,7 +28,7 @@ export function ProductCard({ product }: { product: Product }) {
       setNotice(`${product.name} added to cart.`);
     } catch (error) {
       if (error instanceof ApiError && error.status === 401) {
-        navigate('/login', { state: { from: returnTo, notice: 'Please sign in to add products to your cart.' } });
+        await navigate('/login', { state: { from: returnTo, notice: 'Please sign in to add products to your cart.' } });
         return;
       }
       setNotice(getErrorMessage(error));
