@@ -1703,6 +1703,52 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.12; }
   .ritual-hero--product-slide .ritual-hero__featured-product { height: 250px; }
 }
 
+/* Keep the lifestyle portrait visible while centering its mobile copy card. */
+@media (max-width: 760px) {
+  .ritual-hero--lifestyle-slide .ritual-hero__photography img {
+    object-position: 64% center;
+  }
+  .ritual-hero--lifestyle-slide .ritual-hero__layout {
+    min-height: 760px;
+    align-items: center;
+    padding: 104px 0 34px;
+  }
+  .ritual-hero--lifestyle-slide .ritual-hero__copy {
+    width: min(64%, 250px);
+    margin: 0 auto 0 14px;
+    padding: 16px;
+  }
+  .ritual-hero--lifestyle-slide .ritual-hero__edition {
+    margin-bottom: 12px;
+  }
+  .ritual-hero--lifestyle-slide .ritual-hero__copy h1 {
+    font-size: clamp(1.95rem, 8.6vw, 2.35rem);
+  }
+  .ritual-hero--lifestyle-slide .ritual-hero__benefits {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .ritual-hero--lifestyle-slide .ritual-hero__actions {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .ritual-hero--lifestyle-slide .ritual-hero__primary {
+    min-width: 0;
+    width: 100%;
+  }
+  .ritual-hero--lifestyle-slide .ritual-hero__secondary {
+    display: none;
+  }
+}
+
+@media (max-width: 420px) {
+  .ritual-hero--lifestyle-slide .ritual-hero__layout {
+    min-height: 735px;
+    padding: 104px 0 30px;
+  }
+}
+
 /* Compact navigation: switch before the desktop actions can overflow. */
 @media (max-width: 1100px) {
   .site-header .header-main { position: relative; }
