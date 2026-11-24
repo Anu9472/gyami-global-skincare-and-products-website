@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Droplets, Leaf, ShieldCheck, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import ritualImage from '../../assets/gyami/skincare-ritual-hero-v2.jpg';
+import ritualImage from '../../assets/gyami/skincare-ritual-hero-modest.jpg';
 
 type Ritual = {
   name: string;

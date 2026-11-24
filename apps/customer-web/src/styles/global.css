@@ -1662,7 +1662,7 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.12; }
     background: linear-gradient(180deg, rgba(249, 243, 251, .18) 0%, rgba(249, 243, 251, .04) 50%, rgba(27, 2, 32, .22) 100%);
   }
   .ritual-hero--lifestyle-slide .ritual-hero__photography img {
-    object-position: 61% center;
+    object-position: 78% center;
   }
   .ritual-hero--product-slide .ritual-hero__featured-product {
     display: block;
