@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Droplets, Leaf, ShieldCheck, Sparkles } from 'lucide-react';
+import { ArrowRight, Droplets, Leaf, ShieldCheck, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import ritualImage from '../../assets/gyami/skincare-ritual-hero-modest.jpg';
 
@@ -42,7 +42,25 @@ export function GyamiHero() {
     return () => window.clearInterval(timer);
   }, [totalSlides]);
 
-  return (
+  return (<>
+    <section className="mobile-ritual" aria-labelledby="mobile-ritual-title">
+      <div className="mobile-ritual__heading">
+        <span className="mobile-ritual__badge">GYAMI skincare</span>
+        <p className="mobile-ritual__eyebrow">{heroCopy.eyebrow}</p>
+        <h1 id="mobile-ritual-title">{heroCopy.promise}</h1>
+        <span className="mobile-ritual__rule" aria-hidden="true" />
+        <p className="mobile-ritual__description">{heroCopy.description}</p>
+      </div>
+      <div className={`mobile-ritual__visual ${isLifestyle ? 'mobile-ritual__visual--portrait' : ''}`}>
+        <img key={visual.image} src={visual.image} alt={visual.name} decoding="async" />
+        <span className="mobile-ritual__caption">{visual.shortName}</span>
+      </div>
+      <div className="mobile-ritual__footer">
+        <ul className="mobile-ritual__benefits" aria-label="Charcoal facewash benefits"><li><Sparkles />{heroCopy.benefits[0]}</li><li><Droplets />{heroCopy.benefits[1]}</li><li><Leaf />{heroCopy.benefits[2]}</li></ul>
+        <Link className="mobile-ritual__cta" to={heroCopy.href}>Explore {heroCopy.shortName}<ArrowRight size={19} /></Link>
+        <div className="mobile-ritual__pagination" aria-label="Choose hero image">{visualSlides.map((slide, index) => <button key={slide.tone} type="button" aria-label={`Show ${slide.shortName}`} aria-pressed={activeSlide === index} onClick={() => setActiveSlide(index)} />)}</div>
+      </div>
+    </section>
     <section className={`ritual-hero ritual-hero--${visual.tone} ${isLifestyle ? 'ritual-hero--lifestyle-slide' : 'ritual-hero--product-slide'}`} aria-labelledby="ritual-hero-title">
       <div className="ritual-hero__photography" aria-hidden="true">{isLifestyle && <img key={visual.image} src={visual.image} alt="" fetchPriority="high" decoding="async" />}<div className="ritual-hero__photo-wash" /><div className="ritual-hero__botanicals"><span /><span /><span /></div></div>
       {!isLifestyle && <div className={`ritual-hero__featured-product ritual-hero__featured-product--${visual.tone}`} aria-live="polite"><span className="ritual-hero__featured-glow" aria-hidden="true" /><img className="ritual-hero__product-backdrop" src={visual.image} alt="" aria-hidden="true" decoding="async" /><img className="ritual-hero__product-subject" key={visual.image} src={visual.image} alt={visual.name} decoding="async" /><span className="ritual-hero__featured-label"><small>Featured ritual</small><strong>{visual.shortName}</strong></span></div>}
@@ -59,6 +77,6 @@ export function GyamiHero() {
           <p className="ritual-hero__assurance"><ShieldCheck aria-hidden="true" /> Official GYAMI Global product</p>
         </div>
       </div>
-    </section>
+    </section></>
   );
 }

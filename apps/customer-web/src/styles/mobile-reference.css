@@ -1,0 +1,37 @@
+.mobile-ritual,.mobile-shop-nav{display:none}
+@media(max-width:760px){
+.ritual-hero{display:none!important}
+.site-header--home{position:relative!important;background:#fffaf3!important;color:#350a40!important}
+.site-header--home .header-main{display:flex!important;flex-wrap:wrap!important;gap:12px!important;padding:12px 18px 15px!important;min-height:0!important}
+.site-header--home .brand,.site-header--home .brand strong{color:#350a40!important}
+.site-header--home .mobile-menu{color:#350a40!important;background:#f4edf5!important;border-color:#dfd0e2!important;box-shadow:none!important}
+.site-header--home .header-search{display:flex!important;order:3!important;width:100%!important;flex:0 0 100%!important;height:46px!important;margin:0!important;border:1px solid #e1d3e4!important;border-radius:13px!important;background:#fff!important;color:#6b4076!important;box-shadow:0 4px 18px #3b0b4710!important}
+.site-header--home .header-search input{color:#350a40!important;font-size:14px!important}
+.site-header--home .header-search input::placeholder{color:#96839d!important}
+.mobile-ritual{display:block;position:relative;isolation:isolate;overflow:hidden;border-radius:28px 28px 0 0;color:#350a40;background:radial-gradient(ellipse at 82% 37%,#dfc8e8,transparent 53%),linear-gradient(165deg,#f4eaf6,#ece0ed 58%,#fbf5eb)}
+.mobile-ritual__heading{padding:24px 24px 15px;text-align:center}
+.mobile-ritual__badge{display:inline-block;padding:8px 17px;border:1px solid #b18c4b35;border-radius:30px;background:#fffaf3e6;color:#63401d;font-size:10px;font-weight:750;letter-spacing:.09em;text-transform:uppercase}
+.mobile-ritual__eyebrow{margin:17px 0 10px;color:#936a31;font-size:9px;font-weight:800;letter-spacing:.18em}
+.mobile-ritual h1{max-width:365px;margin:0 auto;font-family:'Playfair Display',Georgia,serif;font-size:clamp(32px,9.2vw,43px);font-weight:600;letter-spacing:-.045em;line-height:1.06;text-wrap:balance}
+.mobile-ritual__rule{display:block;width:64%;height:2px;margin:17px auto 13px;background:linear-gradient(90deg,transparent,#a97b35,#d1b47c,transparent)}
+.mobile-ritual__description{max-width:350px;margin:0 auto;color:#66506e;font-size:12px;line-height:1.65}
+.mobile-ritual__visual{position:relative;height:clamp(280px,87vw,380px);margin:0 16px;overflow:hidden;border-radius:19px;background:#e2d6df}
+.mobile-ritual__visual img{display:block;width:100%;height:100%;object-fit:contain}
+.mobile-ritual__visual--portrait img{object-fit:cover;object-position:73% 40%}
+.mobile-ritual__caption{position:absolute;bottom:12px;right:12px;padding:7px 11px;border:1px solid #ffffff70;border-radius:20px;background:#fffaf3e6;color:#4a2453;font-size:9px;letter-spacing:.06em}
+.mobile-ritual__footer{padding:16px 22px 22px}
+.mobile-ritual__benefits{display:flex;flex-wrap:wrap;justify-content:center;gap:7px 12px;padding:0;margin:0 0 15px;list-style:none}
+.mobile-ritual__benefits li{display:flex;align-items:center;gap:5px;color:#684775;font-size:9px;font-weight:650}
+.mobile-ritual__benefits svg{width:13px;height:13px;color:#9d773d}
+.mobile-ritual__cta{display:flex;align-items:center;justify-content:center;gap:25px;min-height:49px;border:1px solid #ffffff30;border-radius:13px;color:#fff8ed;background:linear-gradient(110deg,#35073f,#702d7b);box-shadow:0 8px 22px #420d4a20;font-size:13px;font-weight:750}
+.mobile-ritual__pagination{display:flex;justify-content:center;gap:4px;margin-top:8px}
+.mobile-ritual__pagination button{display:grid;place-items:center;width:28px;height:26px;padding:0;border:0;background:transparent}
+.mobile-ritual__pagination button::after{content:'';width:5px;height:5px;border-radius:10px;background:#b6a1bc;transition:width .2s}
+.mobile-ritual__pagination button[aria-pressed=true]::after{width:20px;background:#754980}
+.mobile-ritual__pagination button:focus-visible{outline:2px solid #754980;border-radius:8px}
+.mobile-shop-nav{display:grid;grid-template-columns:repeat(4,1fr);position:fixed;z-index:45;bottom:max(10px,env(safe-area-inset-bottom));left:12px;right:12px;padding:5px;border:1px solid #e9ddec;border-radius:22px;background:#fffaf5f5;box-shadow:0 8px 35px #29053224;backdrop-filter:blur(14px)}
+.mobile-shop-nav a{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:4px;min-height:53px;border-radius:16px;color:#88748f;font-size:9px;font-weight:700}
+.mobile-shop-nav svg{width:19px;height:19px}
+.mobile-shop-nav .is-current{color:#5d256b;background:#eee2f2}
+body:has(.mobile-shop-nav){padding-bottom:88px}
+}

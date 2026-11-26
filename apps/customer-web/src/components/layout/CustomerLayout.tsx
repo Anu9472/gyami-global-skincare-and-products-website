@@ -1,4 +1,5 @@
-import { NavigationType, useLocation, useNavigationType, useOutlet } from 'react-router-dom';
+import { Link, NavigationType, useLocation, useNavigationType, useOutlet } from 'react-router-dom';
+import { Home, ShoppingBag, UserRound, BookOpen } from 'lucide-react';
 import { runtimeConfig } from '../../api';
 import { Footer } from './Footer';
 import { Header } from './Header';
@@ -16,6 +17,7 @@ export function CustomerLayout() {
       <Header />
       <main id="main-content"><PageTransition transitionKey={`${location.pathname}${location.search}`} direction={navigationType === NavigationType.Pop ? 'back' : 'forward'}>{outlet}</PageTransition></main>
       {!isLoginScreen && <Footer />}
+      {location.pathname === '/' && <nav className="mobile-shop-nav" aria-label="Mobile shopping navigation"><Link className="is-current" to="/" aria-current="page"><Home /><span>Home</span></Link><Link to="/products"><ShoppingBag /><span>Shop</span></Link><a href="#our-story"><BookOpen /><span>Our story</span></a><Link to="/account"><UserRound /><span>Account</span></Link></nav>}
     </div>
   );
 }
