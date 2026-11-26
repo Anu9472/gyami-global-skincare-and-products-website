@@ -1,0 +1,70 @@
+/* Mobile product slides keep the full pack shot readable beside the copy. */
+@media (max-width: 760px) {
+  .ritual-hero--product-slide::before {
+    background: linear-gradient(90deg, rgba(28, 2, 34, .98) 0%, rgba(42, 5, 49, .94) 42%, rgba(35, 3, 42, .42) 64%, rgba(28, 2, 34, .14) 100%) !important;
+  }
+
+  .ritual-hero--product-slide .ritual-hero__featured-product > .ritual-hero__product-backdrop {
+    inset: -8% !important;
+    width: 116% !important;
+    height: 116% !important;
+    opacity: .34 !important;
+    filter: blur(20px) saturate(.85) brightness(.62) !important;
+    transform: scale(1.1) !important;
+  }
+
+  .ritual-hero--product-slide .ritual-hero__featured-product > .ritual-hero__product-subject {
+    inset: 54px -8% 38px auto !important;
+    width: 66% !important;
+    height: calc(100% - 92px) !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    filter: drop-shadow(-14px 24px 38px rgba(8, 0, 12, .34)) !important;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, .55) 11%, #000 24%, #000 100%);
+    mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, .55) 11%, #000 24%, #000 100%);
+  }
+
+  .ritual-hero--product-slide .ritual-hero__copy {
+    width: 100% !important;
+    max-width: none !important;
+    padding: 38px 51% 26px 22px !important;
+  }
+
+  .ritual-hero--product-slide .ritual-hero__copy h1 {
+    max-width: 7ch !important;
+    font-size: clamp(2.18rem, 9.2vw, 2.72rem) !important;
+  }
+
+  .ritual-hero--product-slide .ritual-hero__description {
+    max-width: 23ch !important;
+    font-size: .74rem !important;
+  }
+
+  .ritual-hero--product-slide .ritual-hero__benefits {
+    grid-template-columns: 1fr !important;
+  }
+
+  .ritual-hero--product-slide .ritual-hero__benefits li {
+    width: fit-content !important;
+    max-width: 100% !important;
+    padding-inline: 9px !important;
+    font-size: .68rem !important;
+  }
+
+  .ritual-hero--product-slide .ritual-hero__primary {
+    width: 100% !important;
+    font-size: .76rem !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .ritual-hero--product-slide .ritual-hero__featured-product > .ritual-hero__product-subject {
+    inset: 68px -12% 42px auto !important;
+    width: 72% !important;
+    height: calc(100% - 110px) !important;
+  }
+
+  .ritual-hero--product-slide .ritual-hero__copy {
+    padding-right: 48% !important;
+  }
+}
