@@ -14,8 +14,8 @@
   }
 
   .ritual-hero--product-slide .ritual-hero__featured-product > .ritual-hero__product-subject {
-    inset: 54px -8% 38px auto !important;
-    width: 66% !important;
+    inset: 58px -10% 34px auto !important;
+    width: 60% !important;
     height: calc(100% - 92px) !important;
     object-fit: contain !important;
     object-position: center !important;
@@ -27,21 +27,25 @@
   .ritual-hero--product-slide .ritual-hero__copy {
     width: 100% !important;
     max-width: none !important;
-    padding: 38px 51% 26px 22px !important;
+    padding: 38px 37% 26px 22px !important;
   }
 
   .ritual-hero--product-slide .ritual-hero__copy h1 {
-    max-width: 7ch !important;
-    font-size: clamp(2.18rem, 9.2vw, 2.72rem) !important;
+    max-width: 10ch !important;
+    font-size: clamp(2.35rem, 9.8vw, 2.95rem) !important;
+    line-height: .93 !important;
+    text-wrap: balance;
   }
 
   .ritual-hero--product-slide .ritual-hero__description {
-    max-width: 23ch !important;
-    font-size: .74rem !important;
+    max-width: 31ch !important;
+    font-size: .76rem !important;
+    line-height: 1.48 !important;
   }
 
   .ritual-hero--product-slide .ritual-hero__benefits {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: max-content max-content !important;
+    gap: 7px !important;
   }
 
   .ritual-hero--product-slide .ritual-hero__benefits li {
@@ -52,19 +56,28 @@
   }
 
   .ritual-hero--product-slide .ritual-hero__primary {
-    width: 100% !important;
-    font-size: .76rem !important;
+    width: min(100%, 250px) !important;
+    font-size: .78rem !important;
   }
 }
 
 @media (max-width: 420px) {
   .ritual-hero--product-slide .ritual-hero__featured-product > .ritual-hero__product-subject {
-    inset: 68px -12% 42px auto !important;
-    width: 72% !important;
+    inset: 72px -14% 40px auto !important;
+    width: 66% !important;
     height: calc(100% - 110px) !important;
   }
 
   .ritual-hero--product-slide .ritual-hero__copy {
-    padding-right: 48% !important;
+    padding: 36px 38% 24px 18px !important;
+  }
+
+  .ritual-hero--product-slide .ritual-hero__copy h1 {
+    max-width: 9ch !important;
+    font-size: clamp(2.2rem, 10.3vw, 2.65rem) !important;
+  }
+
+  .ritual-hero--product-slide .ritual-hero__benefits {
+    grid-template-columns: 1fr !important;
   }
 }
