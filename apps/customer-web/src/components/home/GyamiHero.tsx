@@ -45,7 +45,7 @@ export function GyamiHero() {
   return (
     <section className={`ritual-hero ritual-hero--${visual.tone} ${isLifestyle ? 'ritual-hero--lifestyle-slide' : 'ritual-hero--product-slide'}`} aria-labelledby="ritual-hero-title">
       <div className="ritual-hero__photography" aria-hidden="true">{isLifestyle && <img key={visual.image} src={visual.image} alt="" fetchPriority="high" decoding="async" />}<div className="ritual-hero__photo-wash" /><div className="ritual-hero__botanicals"><span /><span /><span /></div></div>
-      {!isLifestyle && <div className={`ritual-hero__featured-product ritual-hero__featured-product--${visual.tone}`} aria-live="polite"><span className="ritual-hero__featured-glow" aria-hidden="true" /><img key={visual.image} src={visual.image} alt={visual.name} decoding="async" /><span className="ritual-hero__featured-label"><small>Featured ritual</small><strong>{visual.shortName}</strong></span></div>}
+      {!isLifestyle && <div className={`ritual-hero__featured-product ritual-hero__featured-product--${visual.tone}`} aria-live="polite"><span className="ritual-hero__featured-glow" aria-hidden="true" /><img className="ritual-hero__product-backdrop" src={visual.image} alt="" aria-hidden="true" decoding="async" /><img className="ritual-hero__product-subject" key={visual.image} src={visual.image} alt={visual.name} decoding="async" /><span className="ritual-hero__featured-label"><small>Featured ritual</small><strong>{visual.shortName}</strong></span></div>}
       <div className="shell ritual-hero__layout">
         <div className="ritual-hero__copy">
           <p className="ritual-hero__edition"><span>GYAMI skincare</span><i />Made for your daily ritual</p>

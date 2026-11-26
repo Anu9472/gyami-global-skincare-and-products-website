@@ -2319,6 +2319,8 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.12; }
   .ritual-hero--product-slide .ritual-hero__featured-product { height: 338px; }
 }
 
+.ritual-hero__product-backdrop { display: none; }
+
 /* Definitive mobile hero composition. Keep this block last. */
 @media (max-width: 760px) {
   .ritual-hero,
@@ -2327,6 +2329,15 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.12; }
     min-height: 790px;
     overflow: hidden;
     background: #26022d;
+  }
+
+  .ritual-hero::before {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(90deg, rgba(31,2,37,.94) 0%, rgba(46,6,53,.78) 43%, rgba(38,4,44,.28) 67%, transparent 100%);
   }
 
   .ritual-hero__photography,
@@ -2344,8 +2355,7 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.12; }
     box-shadow: none;
   }
 
-  .ritual-hero__photography img,
-  .ritual-hero--product-slide .ritual-hero__featured-product > img {
+  .ritual-hero__photography img {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -2357,6 +2367,38 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.12; }
     opacity: 1;
     background: transparent;
     filter: saturate(.98) contrast(1.03);
+  }
+
+  .ritual-hero--product-slide .ritual-hero__featured-product > .ritual-hero__product-backdrop {
+    position: absolute;
+    z-index: 0;
+    inset: -4%;
+    display: block;
+    width: 108%;
+    max-width: none;
+    height: 108%;
+    padding: 0;
+    object-fit: cover;
+    object-position: center;
+    opacity: .46;
+    filter: blur(12px) saturate(.92) brightness(.72);
+    transform: scale(1.04);
+  }
+
+  .ritual-hero--product-slide .ritual-hero__featured-product > .ritual-hero__product-subject {
+    position: absolute;
+    z-index: 1;
+    inset: 0 -7% 0 auto;
+    display: block;
+    width: 82%;
+    max-width: none;
+    height: 100%;
+    padding: 0;
+    object-fit: contain;
+    object-position: center;
+    opacity: 1;
+    background: transparent;
+    filter: drop-shadow(0 24px 34px rgba(16,0,20,.24));
   }
 
   .ritual-hero--lifestyle-slide .ritual-hero__photography img { object-position: 68% center; }
@@ -2388,12 +2430,12 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.12; }
     min-height: 590px;
     margin-inline: calc((100vw - 100%) / -2 + 14px);
     padding: 26px 34% 24px 22px;
-    overflow: hidden;
-    border: 1px solid rgba(255,255,255,.32);
-    border-radius: 30px;
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
     color: #fffaf1;
-    background: linear-gradient(90deg,rgba(35,3,41,.96) 0%,rgba(50,8,56,.9) 43%,rgba(40,5,46,.38) 62%,rgba(40,5,46,.04) 100%);
-    box-shadow: 0 28px 70px rgba(21,0,25,.35), inset 0 1px rgba(255,255,255,.16);
+    background: transparent;
+    box-shadow: none;
     backdrop-filter: none;
   }
 
