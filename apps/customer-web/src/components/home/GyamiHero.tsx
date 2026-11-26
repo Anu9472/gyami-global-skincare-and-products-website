@@ -23,6 +23,8 @@ const rituals: readonly Ritual[] = [
   { name: 'Gold Kesar Facewash', shortName: 'Gold Kesar', eyebrow: 'Saffron radiance ritual', promise: 'A refined cleanse with a golden touch.', description: 'A premium saffron-inspired daily cleanser presented in GYAMI’s signature royal-purple and champagne-gold design.', benefits: ['Saffron-inspired care', 'Daily radiance', 'Premium ritual'], image: '/media/gyami-gold-kesar-card.png', scene: '/media/gyami-gold-kesar-card.png', href: '/products/gold-kesar-facewash', tone: 'kesar' },
 ];
 
+const heroCopy = rituals[1]!;
+
 const visualSlides = [
   { name: 'The GYAMI cleansing ritual', shortName: 'The ritual', image: ritualImage, tone: 'lifestyle' },
   ...rituals,
@@ -33,7 +35,6 @@ export function GyamiHero() {
   const totalSlides = visualSlides.length;
   const visual = visualSlides[activeSlide] ?? visualSlides[0];
   const isLifestyle = visual.tone === 'lifestyle';
-  const heroCopy = isLifestyle ? rituals[1]! : rituals.find((ritual) => ritual.tone === visual.tone) ?? rituals[1]!;
 
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;

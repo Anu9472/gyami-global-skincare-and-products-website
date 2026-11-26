@@ -1175,6 +1175,297 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.12; }
   .ritual-hero--product-slide .ritual-hero__featured-product { height: 338px; }
 }
 
+/* Final unified mobile hero: the original story sits inside every hero image. */
+@media (max-width: 760px) {
+  .ritual-hero,
+  .ritual-hero--product-slide,
+  .ritual-hero--lifestyle-slide {
+    min-height: 790px;
+    background: #26022d;
+  }
+
+  .ritual-hero__photography,
+  .ritual-hero--product-slide .ritual-hero__featured-product {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border: 0;
+    border-radius: 0;
+    background: #26022d;
+    box-shadow: none;
+  }
+
+  .ritual-hero__photography img,
+  .ritual-hero--product-slide .ritual-hero__featured-product > img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    padding: 0;
+    object-fit: cover;
+    object-position: center;
+    opacity: 1;
+    background: transparent;
+    filter: saturate(.98) contrast(1.03);
+  }
+
+  .ritual-hero--lifestyle-slide .ritual-hero__photography img {
+    object-position: 68% center;
+  }
+
+  .ritual-hero__photo-wash {
+    z-index: 1;
+    background: linear-gradient(180deg, rgba(22,1,27,.08), rgba(27,2,32,.02) 58%, rgba(25,1,30,.42));
+  }
+
+  .ritual-hero--product-slide .ritual-hero__featured-product::before,
+  .ritual-hero--product-slide .ritual-hero__featured-label,
+  .ritual-hero--product-slide .ritual-hero__featured-glow,
+  .ritual-hero__botanicals { display: none; }
+
+  .ritual-hero__layout,
+  .ritual-hero--product-slide .ritual-hero__layout,
+  .ritual-hero--lifestyle-slide .ritual-hero__layout {
+    position: relative;
+    z-index: 3;
+    min-height: 790px;
+    display: flex;
+    align-items: flex-start;
+    padding-top: 92px;
+    padding-bottom: 28px;
+  }
+
+  .ritual-hero__copy,
+  .ritual-hero--product-slide .ritual-hero__copy,
+  .ritual-hero--lifestyle-slide .ritual-hero__copy {
+    position: relative;
+    z-index: 4;
+    width: calc(100vw - 28px);
+    max-width: none;
+    min-height: 590px;
+    margin-inline: calc((100vw - 100%) / -2 + 14px);
+    padding: 26px 34% 24px 22px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,.32);
+    border-radius: 30px;
+    color: #fffaf1;
+    background: linear-gradient(90deg, rgba(35,3,41,.96) 0%, rgba(50,8,56,.9) 43%, rgba(40,5,46,.38) 62%, rgba(40,5,46,.04) 100%);
+    box-shadow: 0 28px 70px rgba(21,0,25,.35), inset 0 1px rgba(255,255,255,.16);
+    backdrop-filter: none;
+  }
+
+  .ritual-hero__edition,
+  .ritual-hero__edition span,
+  .ritual-hero__copy h1,
+  .ritual-hero__description { color: #fffaf1; }
+
+  .ritual-hero__edition {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 24px;
+  }
+  .ritual-hero__edition i { display: none; }
+  .ritual-hero__eyebrow { color: #f0c46b; }
+
+  .ritual-hero__copy h1,
+  .ritual-hero--product-slide .ritual-hero__copy h1 {
+    max-width: 8ch;
+    margin-bottom: 16px;
+    color: #fffaf1;
+    font-size: clamp(2.45rem, 11.4vw, 3.1rem);
+    line-height: .91;
+    text-shadow: 0 8px 28px rgba(10,0,12,.38);
+  }
+
+  .ritual-hero__description {
+    display: -webkit-box;
+    max-width: 26ch;
+    overflow: hidden;
+    font-size: .82rem;
+    line-height: 1.55;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+
+  .ritual-hero__benefits,
+  .ritual-hero--product-slide .ritual-hero__benefits {
+    align-items: flex-start;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 8px;
+    margin-top: 20px;
+    overflow: visible;
+  }
+  .ritual-hero__benefits li,
+  .ritual-hero--product-slide .ritual-hero__benefits li {
+    min-height: 36px;
+    padding: 7px 12px;
+    color: #43254a;
+    background: rgba(255,252,249,.9);
+    white-space: nowrap;
+  }
+
+  .ritual-hero__actions,
+  .ritual-hero--product-slide .ritual-hero__actions {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 20px;
+  }
+  .ritual-hero__primary,
+  .ritual-hero--lifestyle-slide .ritual-hero__primary,
+  .ritual-hero--product-slide .ritual-hero__primary {
+    width: 100%;
+    min-width: 0;
+    box-shadow: 0 14px 30px rgba(15,0,18,.28);
+  }
+  .ritual-hero__secondary,
+  .ritual-hero__assurance { display: none; }
+}
+
+@media (max-width: 420px) {
+  .ritual-hero,
+  .ritual-hero--product-slide,
+  .ritual-hero--lifestyle-slide,
+  .ritual-hero__layout,
+  .ritual-hero--product-slide .ritual-hero__layout,
+  .ritual-hero--lifestyle-slide .ritual-hero__layout { min-height: 770px; }
+
+  .ritual-hero__copy,
+  .ritual-hero--product-slide .ritual-hero__copy,
+  .ritual-hero--lifestyle-slide .ritual-hero__copy {
+    min-height: 565px;
+    padding: 22px 32% 22px 18px;
+  }
+}
+
+/* Unified mobile hero: imagery and the original charcoal story share one card. */
+@media (max-width: 760px) {
+  .ritual-hero,
+  .ritual-hero--product-slide,
+  .ritual-hero--lifestyle-slide {
+    min-height: 790px;
+    background: #26022d;
+  }
+  .ritual-hero__photography,
+  .ritual-hero--product-slide .ritual-hero__featured-product {
+    z-index: -2;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .ritual-hero--product-slide .ritual-hero__featured-product { z-index: 0; }
+  .ritual-hero__photography img,
+  .ritual-hero--product-slide .ritual-hero__featured-product > img {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    object-fit: cover;
+    object-position: center;
+    filter: saturate(.96) contrast(1.03);
+  }
+  .ritual-hero--lifestyle-slide .ritual-hero__photography img { object-position: 72% center; }
+  .ritual-hero__photo-wash {
+    z-index: -1;
+    background: linear-gradient(180deg, rgba(22, 1, 27, .12), rgba(27, 2, 32, .06) 58%, rgba(25, 1, 30, .5));
+  }
+  .ritual-hero--product-slide .ritual-hero__featured-label,
+  .ritual-hero--product-slide .ritual-hero__featured-glow { display: none; }
+  .ritual-hero__layout,
+  .ritual-hero--product-slide .ritual-hero__layout,
+  .ritual-hero--lifestyle-slide .ritual-hero__layout {
+    min-height: 790px;
+    align-items: start;
+    padding-top: 92px;
+    padding-bottom: 28px;
+  }
+  .ritual-hero__copy,
+  .ritual-hero--product-slide .ritual-hero__copy,
+  .ritual-hero--lifestyle-slide .ritual-hero__copy {
+    position: relative;
+    z-index: 4;
+    width: calc(100vw - 28px);
+    max-width: none;
+    min-height: 590px;
+    margin-inline: calc((100vw - 100%) / -2 + 14px);
+    padding: 26px 34% 24px 22px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, .3);
+    border-radius: 30px;
+    color: #fffaf1;
+    background: linear-gradient(90deg, rgba(35, 3, 41, .94) 0%, rgba(50, 8, 56, .84) 55%, rgba(40, 5, 46, .16) 100%);
+    box-shadow: 0 28px 70px rgba(21, 0, 25, .35), inset 0 1px rgba(255,255,255,.16);
+    backdrop-filter: blur(2px);
+  }
+  .ritual-hero__edition,
+  .ritual-hero__edition span,
+  .ritual-hero__copy h1,
+  .ritual-hero__description { color: #fffaf1; }
+  .ritual-hero__edition { align-items: flex-start; flex-direction: column; gap: 6px; margin-bottom: 24px; }
+  .ritual-hero__edition i { display: none; }
+  .ritual-hero__eyebrow { color: #f0c46b; }
+  .ritual-hero__copy h1,
+  .ritual-hero--product-slide .ritual-hero__copy h1 {
+    max-width: 8ch;
+    margin-bottom: 16px;
+    font-size: clamp(2.45rem, 11.4vw, 3.1rem);
+    line-height: .91;
+  }
+  .ritual-hero__description {
+    display: -webkit-box;
+    font-size: .82rem;
+    line-height: 1.55;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+  .ritual-hero__benefits,
+  .ritual-hero--lifestyle-slide .ritual-hero__benefits,
+  .ritual-hero--product-slide .ritual-hero__benefits {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 18px;
+    overflow: visible;
+  }
+  .ritual-hero__benefits li {
+    min-height: 34px;
+    border-color: rgba(255,255,255,.24);
+    color: #fffaf1;
+    background: rgba(255,255,255,.12);
+    white-space: normal;
+    backdrop-filter: blur(9px);
+  }
+  .ritual-hero__benefits svg { color: #f0c46b; }
+  .ritual-hero__actions,
+  .ritual-hero--lifestyle-slide .ritual-hero__actions,
+  .ritual-hero--product-slide .ritual-hero__actions { align-items: stretch; flex-direction: column; gap: 0; margin-top: 20px; }
+  .ritual-hero__primary,
+  .ritual-hero--lifestyle-slide .ritual-hero__primary,
+  .ritual-hero--product-slide .ritual-hero__primary { width: 100%; min-width: 0; box-shadow: 0 14px 30px rgba(15,0,18,.28); }
+  .ritual-hero__secondary { display: none; }
+}
+
+@media (max-width: 420px) {
+  .ritual-hero,
+  .ritual-hero--product-slide,
+  .ritual-hero--lifestyle-slide,
+  .ritual-hero__layout,
+  .ritual-hero--product-slide .ritual-hero__layout,
+  .ritual-hero--lifestyle-slide .ritual-hero__layout { min-height: 770px; }
+  .ritual-hero__copy,
+  .ritual-hero--product-slide .ritual-hero__copy,
+  .ritual-hero--lifestyle-slide .ritual-hero__copy { min-height: 565px; padding: 22px 32% 22px 18px; }
+}
+
 /* Editorial skincare ritual hero */
 .ritual-hero { --ritual-accent: #c77d2b; position: relative; min-height: min(900px, calc(100svh - 44px)); overflow: hidden; color: #2a1230; background: #f7f0e7; isolation: isolate; transition: background .45s ease; }
 .ritual-hero--charcoal { --ritual-accent: #51365b; }.ritual-hero--haldi { --ritual-accent: #d28421; }.ritual-hero--kesar { --ritual-accent: #a56824; }
@@ -2026,4 +2317,117 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.12; }
   .ritual-hero--product-slide .ritual-hero__layout { min-height: 760px; }
   .ritual-hero--product-slide .ritual-hero__layout { padding-top: 86px; padding-bottom: 374px; }
   .ritual-hero--product-slide .ritual-hero__featured-product { height: 338px; }
+}
+
+/* Definitive mobile hero composition. Keep this block last. */
+@media (max-width: 760px) {
+  .ritual-hero,
+  .ritual-hero--product-slide,
+  .ritual-hero--lifestyle-slide {
+    min-height: 790px;
+    overflow: hidden;
+    background: #26022d;
+  }
+
+  .ritual-hero__photography,
+  .ritual-hero--product-slide .ritual-hero__featured-product {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border: 0;
+    border-radius: 0;
+    background: #26022d;
+    box-shadow: none;
+  }
+
+  .ritual-hero__photography img,
+  .ritual-hero--product-slide .ritual-hero__featured-product > img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    padding: 0;
+    object-fit: cover;
+    object-position: center;
+    opacity: 1;
+    background: transparent;
+    filter: saturate(.98) contrast(1.03);
+  }
+
+  .ritual-hero--lifestyle-slide .ritual-hero__photography img { object-position: 68% center; }
+  .ritual-hero__photo-wash { z-index: 1; background: linear-gradient(180deg,rgba(22,1,27,.08),rgba(27,2,32,.02) 58%,rgba(25,1,30,.42)); }
+  .ritual-hero--product-slide .ritual-hero__featured-product::before,
+  .ritual-hero--product-slide .ritual-hero__featured-label,
+  .ritual-hero--product-slide .ritual-hero__featured-glow,
+  .ritual-hero__botanicals { display: none; }
+
+  .ritual-hero__layout,
+  .ritual-hero--product-slide .ritual-hero__layout,
+  .ritual-hero--lifestyle-slide .ritual-hero__layout {
+    position: relative;
+    z-index: 3;
+    min-height: 790px;
+    display: flex;
+    align-items: flex-start;
+    padding-top: 92px;
+    padding-bottom: 28px;
+  }
+
+  .ritual-hero__copy,
+  .ritual-hero--product-slide .ritual-hero__copy,
+  .ritual-hero--lifestyle-slide .ritual-hero__copy {
+    position: relative;
+    z-index: 4;
+    width: calc(100vw - 28px);
+    max-width: none;
+    min-height: 590px;
+    margin-inline: calc((100vw - 100%) / -2 + 14px);
+    padding: 26px 34% 24px 22px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,.32);
+    border-radius: 30px;
+    color: #fffaf1;
+    background: linear-gradient(90deg,rgba(35,3,41,.96) 0%,rgba(50,8,56,.9) 43%,rgba(40,5,46,.38) 62%,rgba(40,5,46,.04) 100%);
+    box-shadow: 0 28px 70px rgba(21,0,25,.35), inset 0 1px rgba(255,255,255,.16);
+    backdrop-filter: none;
+  }
+
+  .ritual-hero__edition,
+  .ritual-hero__edition span,
+  .ritual-hero__copy h1,
+  .ritual-hero__description { color: #fffaf1; }
+  .ritual-hero__edition { align-items: flex-start; flex-direction: column; gap: 6px; margin-bottom: 24px; }
+  .ritual-hero__edition i { display: none; }
+  .ritual-hero__eyebrow { color: #f0c46b; }
+  .ritual-hero__copy h1,
+  .ritual-hero--product-slide .ritual-hero__copy h1 { max-width: 8ch; margin-bottom: 16px; font-size: clamp(2.45rem,11.4vw,3.1rem); line-height: .91; }
+  .ritual-hero__description { display: -webkit-box; max-width: 26ch; overflow: hidden; font-size: .82rem; line-height: 1.55; -webkit-box-orient: vertical; -webkit-line-clamp: 3; }
+  .ritual-hero__benefits,
+  .ritual-hero--product-slide .ritual-hero__benefits { align-items: flex-start; flex-direction: column; flex-wrap: nowrap; gap: 8px; margin-top: 20px; overflow: visible; }
+  .ritual-hero__benefits li,
+  .ritual-hero--product-slide .ritual-hero__benefits li { min-height: 36px; padding: 7px 12px; color: #43254a; background: rgba(255,252,249,.9); white-space: nowrap; }
+  .ritual-hero__actions,
+  .ritual-hero--product-slide .ritual-hero__actions { align-items: stretch; flex-direction: column; gap: 0; margin-top: 20px; }
+  .ritual-hero__primary,
+  .ritual-hero--lifestyle-slide .ritual-hero__primary,
+  .ritual-hero--product-slide .ritual-hero__primary { width: 100%; min-width: 0; box-shadow: 0 14px 30px rgba(15,0,18,.28); }
+  .ritual-hero__secondary,
+  .ritual-hero__assurance { display: none; }
+}
+
+@media (max-width: 420px) {
+  .ritual-hero,
+  .ritual-hero--product-slide,
+  .ritual-hero--lifestyle-slide,
+  .ritual-hero__layout,
+  .ritual-hero--product-slide .ritual-hero__layout,
+  .ritual-hero--lifestyle-slide .ritual-hero__layout { min-height: 770px; }
+  .ritual-hero__copy,
+  .ritual-hero--product-slide .ritual-hero__copy,
+  .ritual-hero--lifestyle-slide .ritual-hero__copy { min-height: 565px; padding: 22px 32% 22px 18px; }
 }
