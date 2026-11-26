@@ -808,6 +808,77 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.12; }
   .tracking-grid { grid-template-columns: 1fr; }
 }
 
+/* Brand manifesto and customer-care policy */
+.gyami-manifesto { padding: clamp(76px, 9vw, 132px) 0; background: linear-gradient(145deg, #fffaf5, #f6edf6 55%, #eee0ef); }
+.gyami-manifesto-grid { display: grid; grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr); gap: clamp(32px, 6vw, 88px); align-items: start; }
+.gyami-manifesto-heading { position: sticky; top: 150px; }
+.gyami-manifesto-heading h2 { max-width: 8ch; margin: 12px 0 22px; color: #300536; font-family: 'Playfair Display', Georgia, serif; font-size: clamp(3.1rem, 6vw, 5.8rem); line-height: .92; letter-spacing: -.05em; }
+.gyami-manifesto-heading > p:last-child, .gyami-manifesto-copy p { color: #675b67; line-height: 1.8; }
+.gyami-manifesto-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.gyami-manifesto-cards article { min-height: 245px; padding: 26px 22px; border: 1px solid rgba(75, 20, 82, .1); border-radius: 26px; background: rgba(255, 255, 255, .72); box-shadow: 0 18px 44px rgba(55, 15, 62, .08); transition: transform .35s ease, box-shadow .35s ease; }
+.gyami-manifesto-cards article:hover { transform: translateY(-7px); box-shadow: 0 26px 55px rgba(55, 15, 62, .13); }
+.gyami-manifesto-cards span { color: #b57628; font-size: .68rem; font-weight: 850; letter-spacing: .16em; }
+.gyami-manifesto-cards h3 { margin: 42px 0 12px; color: #3e1045; font-size: 1.18rem; }
+.gyami-manifesto-cards p { color: #6b5e6b; font-size: .88rem; line-height: 1.7; }
+.gyami-manifesto blockquote { grid-column: 2; margin: 18px 0 0; padding: 34px; border-radius: 28px; color: #fff8ed; background: linear-gradient(135deg, #2d0433, #64186d); box-shadow: 0 24px 60px rgba(49, 7, 57, .2); }
+.gyami-manifesto blockquote p { margin: 0 0 8px; font-family: 'Playfair Display', Georgia, serif; font-size: clamp(2rem, 3.5vw, 3.4rem); line-height: 1; }
+.gyami-manifesto blockquote span { color: #e8c26f; font-size: .7rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+.gyami-manifesto-copy { grid-column: 2; padding: 24px 8px 0; }
+.gyami-manifesto-copy h3 { margin-bottom: 14px; color: #3a0a41; font-size: 1.45rem; }
+.gyami-manifesto-copy .gyami-text-link { margin-top: 10px; }
+
+.policy-page { background: #fbf7f1; }
+.policy-hero { padding: clamp(82px, 9vw, 130px) 0 64px; color: #fffaf0; background: radial-gradient(circle at 84% 20%, rgba(227, 183, 87, .28), transparent 25%), linear-gradient(135deg, #29022f, #54105d 64%, #210027); }
+.policy-hero h1 { max-width: 950px; margin: 14px 0 22px; color: #fffaf0; font-family: 'Playfair Display', Georgia, serif; font-size: clamp(3.4rem, 7vw, 7.4rem); line-height: .88; letter-spacing: -.055em; }
+.policy-hero > .shell > p:not(.gyami-kicker) { max-width: 670px; color: rgba(255, 250, 240, .72); font-size: 1.05rem; line-height: 1.75; }
+.policy-highlights { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 52px; }
+.policy-highlights article { display: grid; grid-template-columns: 38px 1fr; gap: 2px 10px; align-items: center; padding: 18px; border: 1px solid rgba(255, 255, 255, .16); border-radius: 20px; background: rgba(255, 255, 255, .08); backdrop-filter: blur(12px); }
+.policy-highlights svg { grid-row: span 2; color: #edc66f; }
+.policy-highlights strong { font-size: .85rem; }.policy-highlights span { color: rgba(255,255,255,.62); font-size: .7rem; }
+.policy-content { padding-block: clamp(54px, 7vw, 100px); }
+.policy-intro { display: grid; grid-template-columns: auto 1fr; gap: 22px; max-width: 900px; margin-bottom: 48px; padding: 28px; border: 1px solid rgba(104, 37, 112, .12); border-radius: 28px; background: white; box-shadow: 0 18px 45px rgba(70, 28, 75, .06); }
+.policy-intro svg { width: 34px; height: 34px; color: #3f845d; }.policy-intro h2 { margin-bottom: 8px; color: #35083c; }.policy-intro p { color: #6c616b; line-height: 1.7; }
+.policy-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.policy-grid article { min-height: 230px; padding: 28px; border: 1px solid #eadfd5; border-radius: 26px; background: #fffdf9; transition: border-color .25s ease, transform .25s ease, box-shadow .25s ease; }
+.policy-grid article:hover { transform: translateY(-4px); border-color: #d6b374; box-shadow: 0 18px 38px rgba(61, 18, 67, .08); }
+.policy-grid article > span { color: #b36f25; font-size: .68rem; font-weight: 850; letter-spacing: .15em; }.policy-grid h2 { margin: 26px 0 12px; color: #35083c; font-size: 1.3rem; }.policy-grid p { color: #6c616b; font-size: .9rem; line-height: 1.72; }
+.policy-support { display: grid; grid-template-columns: 1fr auto; gap: 30px; align-items: end; margin-top: 34px; padding: 36px; border-radius: 30px; color: #fff9ef; background: linear-gradient(135deg, #33043a, #64186c); }
+.policy-support h2 { margin: 8px 0; font-family: 'Playfair Display', Georgia, serif; font-size: clamp(2rem, 4vw, 3.7rem); }.policy-support p { max-width: 660px; color: rgba(255,255,255,.72); line-height: 1.7; }.policy-support > div:last-child { display: grid; gap: 9px; }.policy-support a { display: inline-flex; align-items: center; gap: 8px; color: #f1cd7a; font-weight: 750; }.policy-support svg { width: 17px; }
+.policy-note { max-width: 900px; margin: 28px auto 0; color: #776c75; font-size: .78rem; line-height: 1.7; text-align: center; }
+
+@media (max-width: 760px) {
+  .gyami-manifesto { padding: 64px 0; }
+  .gyami-manifesto-grid { grid-template-columns: 1fr; gap: 24px; }
+  .gyami-manifesto-heading { position: static; }
+  .gyami-manifesto-heading h2 { max-width: 9ch; font-size: clamp(3rem, 14vw, 4.25rem); }
+  .gyami-manifesto-cards { grid-template-columns: 1fr; gap: 10px; }
+  .gyami-manifesto-cards article { min-height: 0; padding: 22px; border-radius: 22px; }
+  .gyami-manifesto-cards h3 { margin-top: 20px; }
+  .gyami-manifesto blockquote, .gyami-manifesto-copy { grid-column: 1; }
+  .gyami-manifesto blockquote { padding: 26px 22px; border-radius: 24px; }
+  .gyami-manifesto-copy { padding: 8px 2px 0; }
+  .policy-hero { padding: 72px 0 34px; }
+  .policy-hero h1 { font-size: clamp(3.1rem, 14vw, 4.4rem); }
+  .policy-highlights { grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 34px; }
+  .policy-highlights article { grid-template-columns: 30px 1fr; padding: 14px 12px; border-radius: 16px; }
+  .policy-highlights svg { width: 21px; }
+  .policy-content { padding-block: 38px 64px; }
+  .policy-intro { gap: 14px; margin-bottom: 24px; padding: 20px; border-radius: 22px; }
+  .policy-intro svg { width: 27px; height: 27px; }
+  .policy-grid { grid-template-columns: 1fr; gap: 10px; }
+  .policy-grid article { min-height: 0; padding: 22px; border-radius: 22px; }
+  .policy-grid h2 { margin-top: 18px; }
+  .policy-support { grid-template-columns: 1fr; align-items: start; margin-top: 22px; padding: 24px 20px; border-radius: 24px; }
+
+  /* Skillonity-inspired mobile rhythm: broad cards, crisp gaps and clear tap targets. */
+  .gyami-product-grid { gap: 16px; }
+  .gyami-product-card { border-radius: 26px; overflow: hidden; box-shadow: 0 16px 38px rgba(45, 11, 51, .11); }
+  .gyami-product-image { border-radius: 24px 24px 12px 12px; }
+  .gyami-product-info { padding: 18px 18px 20px; }
+  .gyami-card-cta, .button { min-height: 44px; }
+  .page, .product-detail, .checkout-page, .order-details-page { scroll-margin-top: 92px; }
+}
+
 @media (max-width: 760px) {
   .category-nav { justify-content: flex-start; gap: 20px; padding-inline: 14px; scroll-padding-inline: 14px; }
   .category-nav > :last-child { margin-right: 2px; }
